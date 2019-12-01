@@ -1,0 +1,120 @@
+.headerSec {
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+.container {
+  height: 90vh;
+  width: 108vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  overflow: hidden;
+}
+
+.fItem1 {
+  flex: 3.5;
+  position: relative;
+  left: 7vw;
+  top: 50vh;
+}
+.htitle {
+  font-family: Arial, sans-serif;
+  color: rgb(240, 240, 240);
+  font-size: 2rem;
+  text-transform: uppercase;
+  line-height: 8vh;
+  margin-bottom: 4vh;
+}
+.buttonMore {
+  display: inline;
+  background: rgb(240, 240, 240);
+  font-size: 0.8rem;
+  padding: 0.6rem 1rem;
+  font-weight: bolder;
+  cursor: pointer;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+
+.csimg {
+  flex: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: skew(-15deg);
+  -webkit-transform: skew(-15deg);
+  -moz-transform: skew(-15deg);
+  -ms-transform: skew(-15deg);
+  -o-transform: skew(-15deg);
+}
+
+@media only screen and (max-width: 800px) {
+  .htitle {
+    font-size: 1.2rem;
+  }
+
+  .csimg {
+    flex: 1.5;
+    transform: skew(-10deg);
+    -webkit-transform: skew(-10deg);
+    -moz-transform: skew(-10deg);
+    -ms-transform: skew(-10deg);
+    -o-transform: skew(-10deg);
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .fItem1 {
+    top: 55vh;
+  }
+  .htitle {
+    font-size: 1rem;
+    line-height: 6vh;
+  }
+
+  .csimg {
+    flex: 1.5;
+    transform: skew(-10deg);
+    -webkit-transform: skew(-10deg);
+    -moz-transform: skew(-10deg);
+    -ms-transform: skew(-10deg);
+    -o-transform: skew(-10deg);
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .headerSec {
+    height: 70vh;
+    max-width: 100vw;
+    overflow: hidden;
+  }
+
+  .container::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    bottom: 27.5vh;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.432);
+  }
+  .fItem1 {
+    right: -10vw;
+    left: 22vw;
+    top: 23vh;
+  }
+  .csimg {
+    flex: 0;
+  }
+  .htitle {
+    font-size: 0.9rem;
+    line-height: 6vh;
+    font-weight: 600;
+  }
+}

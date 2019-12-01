@@ -1,0 +1,111 @@
+/* flex-direction -f- */
+.fRow {
+  display: flex;
+}
+.fRowReverse {
+  composes: fRow;
+  flex-direction: row-reverse;
+}
+.fColumn {
+  composes: fRow;
+  flex-direction: column;
+}
+.fColumnReverse {
+  composes: fRow;
+  flex-direction: column-reverse;
+}
+
+/* flex-wrap -wf- */
+.wfRow {
+  composes: fRow;
+  flex-wrap: wrap;
+}
+.wfRowReverse {
+  composes: wfRow;
+  flex-direction: row-reverse;
+}
+.wfColumn {
+  composes: wfRow;
+  flex-direction: column;
+}
+.wfColumnReverse {
+  composes: wfRow;
+  flex-direction: column-reverse;
+}
+
+/* justify-content -jcf- */
+.jcfStart {
+  justify-content: flex-start;
+}
+.jcfEnd {
+  justify-content: flex-end;
+}
+.jcfCenter {
+  justify-content: flex-end;
+}
+.jcfSpaceEvenly {
+  justify-content: space-evenly;
+}
+.jcfSpaceBetween {
+  justify-content: space-between;
+}
+.jcfSpaceAround {
+  justify-content: space-around;
+}
+
+/* align-items -aif- */
+.aifStart {
+  align-items: flex-start;
+}
+.aifEnd {
+  align-items: flex-end;
+}
+.aifCenter {
+  align-items: center;
+}
+.aifBaseline {
+  align-items: baseline;
+}
+.aifStretch {
+  align-items: stretch;
+}
+
+/* align-self -asf- */ 
+.asfStart {
+  align-self: flex-start;
+}
+.asfEnd {
+  align-self: flex-end;
+}
+.asfCenter {
+  align-self: center;
+}
+.asfBaseline {
+  align-self: baseline;
+}
+.asfStretch {
+  align-self: stretch;
+}
+
+/* align-content -acf- */
+.acfStart {
+  align-content: flex-start;
+}
+.acfEnd {
+  align-content: flex-end;
+}
+.acfCenter {
+  align-content: center;
+}
+.acfSpaceBetween {
+  align-content: space-between;
+}
+.acfSpaceAround {
+  align-content: space-around;
+}
+.acfSpaceEvenly {
+  align-content: space-evenly;
+}
+.acfStretchd {
+  align-content: stretch;
+}

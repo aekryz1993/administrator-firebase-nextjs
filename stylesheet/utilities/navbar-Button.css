@@ -1,0 +1,19 @@
+@media screen and (max-width: 768px) {
+  .line {
+    width: 30px;
+    height: 3px;
+    margin: 5px;
+    transform: rotate(180deg);
+    transition: 0.5s ease-in-out;
+  }
+  
+  .openednbButton {
+    position: absolute;
+    cursor: pointer;
+    right: 0.8em;
+    top: 1.8em;
+    -webkit-transform: translate(-1em, -1em);
+    transform: translate(-1em, -1em);
+    z-index: 2;
+  }
+}

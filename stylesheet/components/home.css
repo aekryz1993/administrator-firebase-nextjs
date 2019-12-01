@@ -1,0 +1,26 @@
+.scrollToButtons {
+  position: fixed;
+  top: 25vh;
+  right: 1vw;
+  
+}
+.buttonSec {
+  margin-bottom: 10vh;
+  padding: .5rem .8rem;
+  /*height: 65px;
+  *//*width: 3px;
+  */border-radius: 10px;
+  background: rgba(22, 22, 22, 0.411);
+  color: #555;
+  font-size: small;
+  cursor: pointer;
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -webkit-border-radius: ;
+  -moz-border-radius: ;
+  -ms-border-radius: ;
+  -o-border-radius: ;
+}
