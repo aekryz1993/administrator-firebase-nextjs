@@ -1,0 +1,272 @@
+.nav {
+  background-color: #111;
+  width: 100%;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.navLinks {
+  float: right;
+  margin: 8px 2vw 8px 0;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navItem {
+  padding-right: 20px;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+}
+
+.bilama {
+  width: 30px;
+  height: 30px;
+  border-radius: 40%;
+  background-color: #bbb;
+  -webkit-border-radius: 40%;
+  -moz-border-radius: 40%;
+  -ms-border-radius: 40%;
+  -o-border-radius: 40%;
+}
+
+.picProfile {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  margin-right: 10px;
+}
+
+.username {
+  font-family: Arial, Helvetica, sans-serif;
+  color: #bbb;
+}
+
+.dropdown {
+  margin-left: 10px;
+}
+
+.dropbtn {
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 7px solid #bbb;
+  cursor: pointer;
+}
+
+.dropbtn::after {
+  content: "";
+  display: none;
+  border-bottom: 25px solid #f1f1f1;
+  border-right: 25px solid transparent;
+  border-left: 25px solid transparent;
+  position: absolute;
+  top: 50px;
+  right: 2.15vw;
+}
+
+.dropbtn.dropbtnActive::after {
+  display: block;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  top: 66px;
+  right: 2vw;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdownContent.displayCnt {
+  display: block;
+}
+
+.dropdownContent a {
+  display: block;
+  color: black;
+  padding: 12px 16px;
+}
+
+.dropdownContentItems {
+  color: black;
+  padding: 0.7em 1.5em;
+  cursor: pointer;
+  transition: all .5s linear;
+  -webkit-transition: all .5s linear;
+  -moz-transition: all .5s linear;
+  -ms-transition: all .5s linear;
+  -o-transition: all .5s linear;
+}
+
+.dropdownContentItems:hover {
+  color: rgb(206, 206, 206);
+  background-color: rgb(54, 54, 54);
+}
+
+.editProfile {
+  position: absolute;
+  /* -------------------------------------------------------- */
+  display: none;
+  /* -------------------------------------------------------- */
+  top: 5vmin;
+  left: 27vw;
+  right: 27vw;
+  bottom: 5vmin;
+  background-color: #fff;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.5);
+}
+
+.displayEditProfile {
+  display: block;
+}
+
+.editprofileNav {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  left: 27vw;
+  right: 27vw;
+  border-radius: 15px 15px 0 0;
+  -webkit-border-radius: 15px 15px 0 0;
+  -moz-border-radius: 15px 15px 0 0;
+  -ms-border-radius: 15px 15px 0 0;
+  -o-border-radius: 15px 15px 0 0;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.closebtn {
+  margin: 2vh 1vw;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color .3s linear;
+  -webkit-transition: background-color .3s linear;
+  -moz-transition: background-color .3s linear;
+  -ms-transition: background-color .3s linear;
+  -o-transition: background-color .3s linear;
+}
+
+.closebtn:hover {
+  background-color: rgba(17, 17, 17, 0.247);
+}
+
+.closeline {
+  position: relative;
+  width: 20px;
+  height: 2px;
+  background: #111;
+  transition: background-color .3s linear;
+  -webkit-transition: background-color .3s linear;
+  -moz-transition: background-color .3s linear;
+  -ms-transition: background-color .3s linear;
+  -o-transition: background-color .3s linear;
+}
+
+.closebtn:hover .closeline {
+  background-color: #eee;
+}
+
+.closeline:nth-child(1) {
+  transform: rotate(-130deg);
+  -webkit-transform: ;
+  -moz-transform: ;
+  -ms-transform: ;
+  -o-transform: ;
+}
+
+.closeline:nth-child(2) {
+  top: -2px;
+  transform: rotate(130deg);
+  -webkit-transform: rotate(130deg);
+  -moz-transform: rotate(130deg);
+  -ms-transform: rotate(130deg);
+  -o-transform: rotate(130deg);
+}
+
+.editprofileNav .firstItem {
+  flex: 0.5;
+}
+
+.editprofileNav .secondItem {
+  flex: 2.5;
+  font-size: 1.3rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  cursor: default;
+}
+
+.editprofileNav .thirdItem {
+  flex: 3;
+}
+
+.editprofileNav .savebtn {
+  float: right;
+  margin-right: 2vw;
+  background-color: #111;
+  padding: 0.6em 1.5em;
+  color: #eee;
+  cursor: pointer;
+  border-radius: 20px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+  transition: all .3s ease-out;
+  -webkit-transition: all .3s ease-out;
+  -moz-transition: all .3s ease-out;
+  -ms-transition: all .3s ease-out;
+  -o-transition: all .3s ease-out;
+}
+
+.editprofileNav .savebtn:hover {
+  background-color: #555;
+  color: #111;
+}
+
+@media screen and (max-width: 800px) {
+  .editProfile {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 3;
+    border-radius: 0;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+  }
+
+  .editprofileNav {
+    left: 0;
+    right: 0;
+  }
+}

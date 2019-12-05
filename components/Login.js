@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from '../lib/db'
 import Router from "next/router";
 
-const Login = ({token}) => {
+const Login = () => {
 
   const auth = useAuth();
 
@@ -11,18 +11,7 @@ const Login = ({token}) => {
   const [values, setValues] = useState({
     email: '',
     password: ''
-  })
-
-  // useEffect(() => {
-  //   const handleRouteChange = url => {
-  //     // router.prefetch(url)
-  //   }
-  
-  //   Router.events.on('routeChangeStart', handleRouteChange)
-  //   return () => {
-  //     Router.events.off('routeChangeStart', handleRouteChange)
-  //   }
-  // }, [])  
+  }) 
 
   const onSubmit = (event) => {
 

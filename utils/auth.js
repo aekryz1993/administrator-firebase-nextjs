@@ -4,24 +4,28 @@ import Router from "next/router";
 export function notLoggedin(ctx) {
   const { token } = nextCookie(ctx)
 
-  if (!token) {
+  const user = ctx.req && ctx.req.session ? ctx.req.session.decodedToken : null
+
+  if (!user) {
     if (typeof window === 'undefined') {
       ctx.res.writeHead(302, { Location: '/' })
       ctx.res.end()
     } else {
-      Router.push('/')
+      if(!token) Router.push('/')
     }
   }
 
-  return { token }
+  return { user, token }
 }
 
 export function Loggedin(ctx) {
 
   const { token } = nextCookie(ctx)
+  const user = ctx.req && ctx.req.session ? ctx.req.session.decodedToken : null
 
-  if (token) {
+  if (user) {
     if (typeof window === 'undefined') {
+      // if(ctx.req && ctx.req.session) console.log(ctx.req.session.decodedToken.user)
       ctx.res.writeHead(302, { Location: '/dashboard/profile' })
       ctx.res.end()
     } else {
@@ -29,5 +33,5 @@ export function Loggedin(ctx) {
     }
   }
 
-  return { token }
+  return { user, token }
 }

@@ -1,0 +1,105 @@
+.container {
+  padding: 0 1vw;
+}
+.picProfile {
+  display: block;
+  position: relative;
+  top: 3vmin;
+  left: 50%;
+  right: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  -webkit-border-radius:;
+  -moz-border-radius:;
+  -ms-border-radius:;
+  -o-border-radius:;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+}
+
+.changePic {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #999;
+  background-color: rgba(136, 136, 136, 0.26);
+  border-radius: 50%;
+  left: 50%;
+  right: 50%;
+  transform: translate(-50%, -220%);
+  -webkit-transform: translate(-50%, -220%);
+  -moz-transform: translate(-50%, -220%);
+  -ms-transform: translate(-50%, -220%);
+  -o-transform: translate(-50%, -220%);
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  cursor: pointer;
+  transition: background-color .3s linear;
+  -webkit-transition: background-color .3s linear;
+  -moz-transition: background-color .3s linear;
+  -ms-transition: background-color .3s linear;
+  -o-transition: background-color .3s linear;
+}
+
+.changePic:hover {
+  background-color: rgba(136, 136, 136, 0.76);
+}
+
+.nameContainer {
+  position: relative;
+  background-color: #eee;
+  top: 1vmin;
+  padding: .5rem 0 0;
+  border-radius: 2px 2px 0 0;
+  -webkit-border-radius: 2px 2px 0 0;
+  -moz-border-radius: 2px 2px 0 0;
+  -ms-border-radius: 2px 2px 0 0;
+  -o-border-radius: 2px 2px 0 0;
+}
+
+.labelName {
+  padding-left: .8rem;
+}
+
+.inputName {
+  background-color: #eee;
+  box-sizing: border-box;
+  width: 100%;
+  padding: .8rem .8rem;
+  border: none;
+  border-bottom: 2px solid #999;
+  font-size: 1rem;
+  transition: .2s ease;
+  -webkit-transition: .2s ease;
+  -moz-transition: .2s ease;
+  -ms-transition: .2s ease;
+  -o-transition: .2s ease;
+}
+
+.inputName::-webkit-input-placeholder { /* Edge */
+  color: #555;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.inputName:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #555;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.inputName::placeholder {
+  color: #555;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.inputName:focus {
+  border-bottom: 2px solid #111;
+}

@@ -16,7 +16,7 @@ const PostLink = ({ path, name }) => {
   return (
     <li className={sidenaveStyle.secItem}>
       <Link href={`/dashboard/${path}`} >
-        <a><FontAwesomeIcon icon={icons[path]} size="lg" /> <span>{name}</span></a>
+        <a><FontAwesomeIcon icon={icons[path]} size="lg" /><span>{name}</span></a>
       </Link>
     </li>
   )

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Profile from "../../components/Profile";
 import { notLoggedin } from "../../utils/auth";
 import { useAuth } from '../../lib/db'
-import Login from "../../components/Login";
+// import Login from "../../components/Login";
 
 const profile = ({token}) => {
 
