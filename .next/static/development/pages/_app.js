@@ -151,7 +151,12 @@ function useProvideAuth() {
     url: ""
   }),
       uploadInfo = _useState2[0],
-      setUploadInfo = _useState2[1];
+      setUploadInfo = _useState2[1]; // useEffect(() => {
+  //   return () => {
+  //     cleanup
+  //   };
+  // }, [input]);
+
 
   var signin =
   /*#__PURE__*/
@@ -258,41 +263,9 @@ function useProvideAuth() {
     });
   };
 
-  var fetchUser =
-  /*#__PURE__*/
-  function () {
-    var _ref4 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_9__["default"])(
-    /*#__PURE__*/
-    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.mark(function _callee3() {
-      var uid;
-      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              uid = user.uid;
-              _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_19___default()('/api/users/user', {
-                uid: uid
-              });
-
-            case 3:
-              currentUser = _context3.sent;
-
-            case 4:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    return function fetchUser() {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-
-  var uploadImage = function uploadImage(image) {
-    var uploadTask = storage.ref("images/profile/".concat(image.name)).put(image);
+  var uploadImage = function uploadImage(userId, image) {
+    if (!image || !userId) return;
+    var uploadTask = storage.ref("images/profile/".concat(userId, "/").concat(image.name)).put(image);
     return uploadTask.on('state_changed', function (snapshot) {
       var progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
       setUploadInfo(_objectSpread({}, uploadInfo, {
@@ -306,32 +279,60 @@ function useProvideAuth() {
       //     console.log('Upload is running');
       //     break;
       // }
+      // resolve(progress)
     }, function (error) {
+      // reject(error)
       console.log(error);
-    },
-    /*#__PURE__*/
-    Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_9__["default"])(
-    /*#__PURE__*/
-    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.mark(function _callee4() {
-      var url;
-      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              _context4.next = 2;
-              return uploadTask.snapshot.ref.getDownloadURL();
+    } // () => {
+    //   setTimeout(async () => {
+    //     const thumbnail = await getPicProfileUrl(userId)
+    //     // console.log(thumbnail)
+    //     return thumbnail
+    //   }, 5000)
+    //   const url = await uploadTask.snapshot.ref.getDownloadURL()
+    //   console.log(url)
+    // }
+    );
+  };
 
-            case 2:
-              url = _context4.sent;
-              console.log(url);
+  var updateProfile = function updateProfile(uid) {
+    return (
+      /*#__PURE__*/
+      function () {
+        var _ref4 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_9__["default"])(
+        /*#__PURE__*/
+        _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.mark(function _callee3(displayName, photoURL) {
+          var updateUserProfile, snapshot;
+          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  updateUserProfile = functions.httpsCallable('updateUserProfile');
+                  _context3.next = 3;
+                  return updateUserProfile({
+                    uid: uid,
+                    displayName: displayName,
+                    photoURL: photoURL
+                  });
 
-            case 4:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    })));
+                case 3:
+                  snapshot = _context3.sent;
+                  console.log(snapshot);
+                  return _context3.abrupt("return", snapshot);
+
+                case 6:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }));
+
+        return function (_x5, _x6) {
+          return _ref4.apply(this, arguments);
+        };
+      }()
+    );
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_10__["useEffect"])(function () {
@@ -360,13 +361,10 @@ function useProvideAuth() {
     signin: signin,
     // signup,
     signout: signout,
-    uploadImage: uploadImage
+    uploadImage: uploadImage,
+    updateProfile: updateProfile
   };
-} // useProvideAuth.getInitialProps = async ({ req, res }) => {
-//   res.user = {}
-//   const userAgent = req ? console.log('auth.currentUser') : 'console.log(auth.currentUser)'
-//   return { userAgent }
-// }
+}
 
 /***/ }),
 

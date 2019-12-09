@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import Dashboard from "../../components/Dashboard";
 import { notLoggedin } from "../../utils/auth";
 import { useAuth } from '../../lib/db'
-import Login from "../../components/Login";
 
-const users = ({token}) => {
+const users = ({user}) => {
 
   const auth = useAuth()
 
@@ -20,7 +19,7 @@ const users = ({token}) => {
 
   // if (token && token === refreshToken) {
     return (
-      <Dashboard>
+      <Dashboard user={user}>
         users
       </Dashboard>
     )

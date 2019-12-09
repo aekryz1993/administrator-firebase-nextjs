@@ -246,7 +246,11 @@ function useProvideAuth() {
   } = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])({
     progress: 0,
     url: ""
-  });
+  }); // useEffect(() => {
+  //   return () => {
+  //     cleanup
+  //   };
+  // }, [input]);
 
   const signin = async (email, password) => {
     const loginAsAdmin = functions.httpsCallable('loginAsAdmin');
@@ -300,15 +304,9 @@ function useProvideAuth() {
     });
   };
 
-  const fetchUser = async () => {
-    const uid = user.uid;
-    currentUser = await axios__WEBPACK_IMPORTED_MODULE_17___default()('/api/users/user', {
-      uid: uid
-    });
-  };
-
-  const uploadImage = image => {
-    const uploadTask = storage.ref(`images/profile/${image.name}`).put(image);
+  const uploadImage = (userId, image) => {
+    if (!image || !userId) return;
+    const uploadTask = storage.ref(`images/profile/${userId}/${image.name}`).put(image);
     return uploadTask.on('state_changed', snapshot => {
       const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
       setUploadInfo(_objectSpread({}, uploadInfo, {
@@ -322,12 +320,31 @@ function useProvideAuth() {
       //     console.log('Upload is running');
       //     break;
       // }
+      // resolve(progress)
     }, error => {
+      // reject(error)
       console.log(error);
-    }, async () => {
-      const url = await uploadTask.snapshot.ref.getDownloadURL();
-      console.log(url);
+    } // () => {
+    //   setTimeout(async () => {
+    //     const thumbnail = await getPicProfileUrl(userId)
+    //     // console.log(thumbnail)
+    //     return thumbnail
+    //   }, 5000)
+    //   const url = await uploadTask.snapshot.ref.getDownloadURL()
+    //   console.log(url)
+    // }
+    );
+  };
+
+  const updateProfile = uid => async (displayName, photoURL) => {
+    const updateUserProfile = functions.httpsCallable('updateUserProfile');
+    const snapshot = await updateUserProfile({
+      uid: uid,
+      displayName: displayName,
+      photoURL: photoURL
     });
+    console.log(snapshot);
+    return snapshot;
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_8__["useEffect"])(() => {
@@ -354,13 +371,10 @@ function useProvideAuth() {
     signin,
     // signup,
     signout,
-    uploadImage
+    uploadImage,
+    updateProfile
   };
-} // useProvideAuth.getInitialProps = async ({ req, res }) => {
-//   res.user = {}
-//   const userAgent = req ? console.log('auth.currentUser') : 'console.log(auth.currentUser)'
-//   return { userAgent }
-// }
+}
 
 /***/ }),
 

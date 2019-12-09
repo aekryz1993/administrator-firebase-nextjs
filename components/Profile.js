@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import Dashboard from "../components/Dashboard";
 import { useAuth } from "../lib/db";
 
-const profile = () => {
+const profile = ({user}) => {
 
   const auth = useAuth()
 
@@ -21,7 +21,7 @@ const profile = () => {
     // setUploadState({ ...uploadState, progress: uploadImage.progress, url: uploadImage.url })
   }
   return (
-    <Dashboard>
+    <Dashboard user={user}>
       <>
         <img
           src={uploadState.url || 'https://via.placeholder.com/400x300'}

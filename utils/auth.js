@@ -5,7 +5,7 @@ export function notLoggedin(ctx) {
   const { token } = nextCookie(ctx)
 
   const user = ctx.req && ctx.req.session ? ctx.req.session.decodedToken : null
-
+  
   if (!user) {
     if (typeof window === 'undefined') {
       ctx.res.writeHead(302, { Location: '/' })

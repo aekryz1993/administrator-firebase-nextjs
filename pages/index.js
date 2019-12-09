@@ -34,18 +34,17 @@ import Profile from "../components/Profile";
 //   }
 // }
 
-const login = ({token}) => {
+const login = ({token, user}) => {
 
   const auth = useAuth()
 
-  // console.log(auth.user.refreshToken)
-
-  if(token && token === auth.user.refreshToken) {
+  if(token && auth.user) {
+  // if(token && token === auth.user.refreshToken) {
     return (
       <Profile/>
     )
   }
-  return <Login/>
+  return <Login user={user}/>
 }
 
 login.getInitialProps = async (ctx) => {

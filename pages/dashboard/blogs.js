@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useAuth } from '../../lib/db'
 import Dashboard from "../../components/Dashboard";
 import { notLoggedin } from "../../utils/auth";
-import Login from "../../components/Login";
 
-const blogs = ({token}) => {
+const blogs = ({user}) => {
 
   const auth = useAuth()
 
@@ -54,7 +53,7 @@ const blogs = ({token}) => {
 
   // if (token && token === refreshToken) {
     return (
-      <Dashboard>
+      <Dashboard user={user}>
         <form onSubmit={onSubmit}>
           <input
             name="title"

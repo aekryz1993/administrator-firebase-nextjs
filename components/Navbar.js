@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from "react";
 import EditProfile from "./EditProfile";
 import navbarStyle from "../stylesheet/components/navbar.css";
+import { useAuth } from "../lib/db";
 
-const NavBar = () => {
+const NavBar = ({ user }) => {
+
+  const auth = useAuth()
 
   const [show, setShow] = useState(false);
   const [close, setClose] = useState(false);
+  const [save, setSave] = useState(false);
+  const [currentUserPic, setCurrentUser] = useState(null);
+  const [name, setName] = useState('');
 
   const node = useRef();
   const node2 = useRef();
@@ -26,6 +32,15 @@ const NavBar = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickCloseEditprofile);
     };
+  }, []);
+
+  useEffect(() => {
+    const displayName = auth.user ? auth.user.displayName : user.name
+    const photoURL = auth.user ? auth.user.photoURL : user.picture
+    const uid = auth.user ? auth.user.uid : user.user_id
+
+    setCurrentUser(photoURL)
+    setName(displayName)
   }, []);
 
   // Dropdown display and close
@@ -69,6 +84,14 @@ const NavBar = () => {
     return close ? navbarStyle.displayEditProfile : ''
   }
 
+  const handleSaveClick = () => {
+    setSave(true)
+  }
+
+  const triggerUpdate = () => {
+    setSave(false)
+  }
+
   return (
     <div className={`${navbarStyle.nav} ${navbarStyle.clearfix}`}>
       <div onClick={() => handleState()} className={navbarStyle.showNav}>
@@ -87,9 +110,9 @@ const NavBar = () => {
           <li className={`${navbarStyle.navItem} ${navbarStyle.profileInfo}`}>
             <img
               className={`${navbarStyle.picProfile}`}
-              src='https://via.placeholder.com/400x300'
+              src={currentUserPic}
             />
-            <span className={navbarStyle.username}>Riazi Abdelkader</span>
+            <span className={navbarStyle.username}>{name}</span>
             <div className={navbarStyle.dropdown} >
               <div
                 className={`${navbarStyle.dropbtn} ${activeDropdownbtn()}`}
@@ -118,10 +141,10 @@ const NavBar = () => {
             <span className={`${navbarStyle.title}`}>Edit profile</span>
           </div>
           <div className={`${navbarStyle.thirdItem}`}>
-            <div className={`${navbarStyle.savebtn}`}>Save</div>
+            <div className={`${navbarStyle.savebtn}`} onClick={handleSaveClick}>Save</div>
           </div>
         </nav>
-        <EditProfile/>
+        <EditProfile save={save} triggerUpdate={triggerUpdate} userServer={user} />
       </div>
     </div>
   )

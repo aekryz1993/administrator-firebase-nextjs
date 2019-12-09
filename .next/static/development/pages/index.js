@@ -22,10 +22,13 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 var Dashboard = function Dashboard(_ref) {
-  var children = _ref.children;
+  var children = _ref.children,
+      user = _ref.user;
   return __jsx(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, __jsx(_Sidenav__WEBPACK_IMPORTED_MODULE_1__["default"], null), __jsx("main", {
     className: _stylesheet_layouts_dashboard_css__WEBPACK_IMPORTED_MODULE_2___default.a.main
-  }, __jsx(_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], null), children));
+  }, __jsx(_Navbar__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    user: user
+  }), children));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Dashboard);
@@ -41,33 +44,136 @@ var Dashboard = function Dashboard(_ref) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stylesheet/components/editProfile.css */ "./stylesheet/components/editProfile.css");
-/* harmony import */ var _stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _lib_db__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../lib/db */ "./lib/db.js");
+/* harmony import */ var _stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../stylesheet/components/editProfile.css */ "./stylesheet/components/editProfile.css");
+/* harmony import */ var _stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_9__);
 
-var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
-var EditProfile = function EditProfile() {
+
+
+
+
+
+var __jsx = react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement;
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
+
+
+
+
+var EditProfile = function EditProfile(_ref) {
+  var save = _ref.save,
+      userServer = _ref.userServer,
+      triggerUpdate = _ref.triggerUpdate;
+  var auth = Object(_lib_db__WEBPACK_IMPORTED_MODULE_8__["useAuth"])();
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({
+    image: null,
+    displayName: '',
+    progress: 0,
+    url: ''
+  }),
+      uploadState = _useState[0],
+      setUploadState = _useState[1];
+
+  var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])(null),
+      userId = _useState2[0],
+      setUserId = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
+    var displayName = auth.user ? auth.user.displayName : userServer.name;
+    var photoURL = auth.user ? auth.user.photoURL : userServer.picture;
+    var uid = auth.user ? auth.user.uid : userServer.user_id;
+    setUploadState(_objectSpread({}, uploadState, {
+      displayName: displayName,
+      url: photoURL
+    }));
+    setUserId(uid);
+  }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
+    // if (auth.uploadImage(userId, uploadState.image)) {
+    var unsubscribe = auth.uploadImage(userId, uploadState.image);
+    return function () {
+      return unsubscribe && unsubscribe();
+    }; // }
+  }, [uploadState.image]);
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
+    // const unsubscribe = auth.getPicProfileUrl(userId)
+    if (!userId) return;
+    var unsubscribe = auth.firestore.collection("photoProfileURLs").doc(userId).onSnapshot(function (doc) {
+      setUploadState(_objectSpread({}, uploadState, {
+        url: doc.data().thumbnail
+      }));
+      console.log(doc.metadata);
+    });
+    return function () {
+      return unsubscribe && unsubscribe();
+    };
+  }, [uploadState.image]);
+
+  var handleFileChange = function handleFileChange(event) {
+    if (event.target.files[0]) {
+      var image = event.target.files[0];
+      setUploadState(_objectSpread({}, uploadState, {
+        image: image
+      }));
+    }
+  };
+
+  var handleNameChange = function handleNameChange(event) {
+    setUploadState(_objectSpread({}, uploadState, {
+      displayName: event.target.value
+    }));
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_7__["useEffect"])(function () {
+    if (save) {
+      auth.updateProfile(userId)(uploadState.displayName, uploadState.url);
+      triggerUpdate();
+    }
+  }, [save]);
   return __jsx("div", {
-    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_1___default.a.container)
+    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_9___default.a.container)
   }, __jsx("div", null, __jsx("img", {
-    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_1___default.a.picProfile),
-    src: "https://via.placeholder.com/400x300"
-  }), __jsx("div", {
-    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_1___default.a.changePic)
+    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_9___default.a.picProfile),
+    src: uploadState.url || 'auth.user.photoURL'
+  }), __jsx("input", {
+    type: "file",
+    name: "profile",
+    onChange: handleFileChange,
+    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_9___default.a.changePic)
   })), __jsx("div", {
-    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_1___default.a.nameContainer)
+    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_9___default.a.nameContainer)
   }, __jsx("label", {
-    "for": "name",
-    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_1___default.a.labelName)
+    htmlFor: "name",
+    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_9___default.a.labelName)
   }, "Name"), __jsx("input", {
-    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_1___default.a.inputName),
+    className: "".concat(_stylesheet_components_editProfile_css__WEBPACK_IMPORTED_MODULE_9___default.a.inputName),
     type: "text",
     id: "name",
     name: "name",
-    placeholder: "Add your name"
+    placeholder: "Add your name",
+    value: uploadState.displayName,
+    onChange: handleNameChange
   })));
 };
 
@@ -186,13 +292,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _EditProfile__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditProfile */ "./components/EditProfile.js");
 /* harmony import */ var _stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../stylesheet/components/navbar.css */ "./stylesheet/components/navbar.css");
 /* harmony import */ var _stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _lib_db__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../lib/db */ "./lib/db.js");
 
 var __jsx = react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement;
 
 
 
 
-var NavBar = function NavBar() {
+
+var NavBar = function NavBar(_ref) {
+  var user = _ref.user;
+  var auth = Object(_lib_db__WEBPACK_IMPORTED_MODULE_3__["useAuth"])();
+
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       show = _useState[0],
       setShow = _useState[1];
@@ -200,6 +311,18 @@ var NavBar = function NavBar() {
   var _useState2 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       close = _useState2[0],
       setClose = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      save = _useState3[0],
+      setSave = _useState3[1];
+
+  var _useState4 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      currentUserPic = _useState4[0],
+      setCurrentUser = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      name = _useState5[0],
+      setName = _useState5[1];
 
   var node = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
   var node2 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])();
@@ -215,6 +338,13 @@ var NavBar = function NavBar() {
     return function () {
       document.removeEventListener("mousedown", handleClickCloseEditprofile);
     };
+  }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var displayName = auth.user ? auth.user.displayName : user.name;
+    var photoURL = auth.user ? auth.user.photoURL : user.picture;
+    var uid = auth.user ? auth.user.uid : user.user_id;
+    setCurrentUser(photoURL);
+    setName(displayName);
   }, []); // Dropdown display and close
 
   var handleClickDropdown = function handleClickDropdown() {
@@ -259,6 +389,14 @@ var NavBar = function NavBar() {
     return close ? _stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.displayEditProfile : '';
   };
 
+  var handleSaveClick = function handleSaveClick() {
+    setSave(true);
+  };
+
+  var triggerUpdate = function triggerUpdate() {
+    setSave(false);
+  };
+
   return __jsx("div", {
     className: "".concat(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.nav, " ").concat(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.clearfix)
   }, __jsx("div", {
@@ -289,10 +427,10 @@ var NavBar = function NavBar() {
     className: "".concat(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.navItem, " ").concat(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.profileInfo)
   }, __jsx("img", {
     className: "".concat(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.picProfile),
-    src: "https://via.placeholder.com/400x300"
+    src: currentUserPic
   }), __jsx("span", {
     className: _stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.username
-  }, "Riazi Abdelkader"), __jsx("div", {
+  }, name), __jsx("div", {
     className: _stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.dropdown
   }, __jsx("div", {
     className: "".concat(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.dropbtn, " ").concat(activeDropdownbtn()),
@@ -329,8 +467,13 @@ var NavBar = function NavBar() {
   }, "Edit profile")), __jsx("div", {
     className: "".concat(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.thirdItem)
   }, __jsx("div", {
-    className: "".concat(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.savebtn)
-  }, "Save"))), __jsx(_EditProfile__WEBPACK_IMPORTED_MODULE_1__["default"], null)));
+    className: "".concat(_stylesheet_components_navbar_css__WEBPACK_IMPORTED_MODULE_2___default.a.savebtn),
+    onClick: handleSaveClick
+  }, "Save"))), __jsx(_EditProfile__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    save: save,
+    triggerUpdate: triggerUpdate,
+    userServer: user
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NavBar);
@@ -381,7 +524,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 
 
-var profile = function profile() {
+var profile = function profile(_ref) {
+  var user = _ref.user;
   var auth = Object(_lib_db__WEBPACK_IMPORTED_MODULE_9__["useAuth"])();
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_7__["useState"])({
@@ -405,7 +549,9 @@ var profile = function profile() {
     var uploadImage = auth.uploadImage(uploadState.image); // setUploadState({ ...uploadState, progress: uploadImage.progress, url: uploadImage.url })
   };
 
-  return __jsx(_components_Dashboard__WEBPACK_IMPORTED_MODULE_8__["default"], null, __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, __jsx("img", {
+  return __jsx(_components_Dashboard__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    user: user
+  }, __jsx(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, __jsx("img", {
     src: uploadState.url || 'https://via.placeholder.com/400x300',
     alt: "Uploaded Images",
     height: "300",
@@ -619,7 +765,12 @@ function useProvideAuth() {
     url: ""
   }),
       uploadInfo = _useState2[0],
-      setUploadInfo = _useState2[1];
+      setUploadInfo = _useState2[1]; // useEffect(() => {
+  //   return () => {
+  //     cleanup
+  //   };
+  // }, [input]);
+
 
   var signin =
   /*#__PURE__*/
@@ -726,41 +877,9 @@ function useProvideAuth() {
     });
   };
 
-  var fetchUser =
-  /*#__PURE__*/
-  function () {
-    var _ref4 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_9__["default"])(
-    /*#__PURE__*/
-    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.mark(function _callee3() {
-      var uid;
-      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              uid = user.uid;
-              _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_19___default()('/api/users/user', {
-                uid: uid
-              });
-
-            case 3:
-              currentUser = _context3.sent;
-
-            case 4:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    return function fetchUser() {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-
-  var uploadImage = function uploadImage(image) {
-    var uploadTask = storage.ref("images/profile/".concat(image.name)).put(image);
+  var uploadImage = function uploadImage(userId, image) {
+    if (!image || !userId) return;
+    var uploadTask = storage.ref("images/profile/".concat(userId, "/").concat(image.name)).put(image);
     return uploadTask.on('state_changed', function (snapshot) {
       var progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
       setUploadInfo(_objectSpread({}, uploadInfo, {
@@ -774,32 +893,60 @@ function useProvideAuth() {
       //     console.log('Upload is running');
       //     break;
       // }
+      // resolve(progress)
     }, function (error) {
+      // reject(error)
       console.log(error);
-    },
-    /*#__PURE__*/
-    Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_9__["default"])(
-    /*#__PURE__*/
-    _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.mark(function _callee4() {
-      var url;
-      return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              _context4.next = 2;
-              return uploadTask.snapshot.ref.getDownloadURL();
+    } // () => {
+    //   setTimeout(async () => {
+    //     const thumbnail = await getPicProfileUrl(userId)
+    //     // console.log(thumbnail)
+    //     return thumbnail
+    //   }, 5000)
+    //   const url = await uploadTask.snapshot.ref.getDownloadURL()
+    //   console.log(url)
+    // }
+    );
+  };
 
-            case 2:
-              url = _context4.sent;
-              console.log(url);
+  var updateProfile = function updateProfile(uid) {
+    return (
+      /*#__PURE__*/
+      function () {
+        var _ref4 = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_9__["default"])(
+        /*#__PURE__*/
+        _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.mark(function _callee3(displayName, photoURL) {
+          var updateUserProfile, snapshot;
+          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.wrap(function _callee3$(_context3) {
+            while (1) {
+              switch (_context3.prev = _context3.next) {
+                case 0:
+                  updateUserProfile = functions.httpsCallable('updateUserProfile');
+                  _context3.next = 3;
+                  return updateUserProfile({
+                    uid: uid,
+                    displayName: displayName,
+                    photoURL: photoURL
+                  });
 
-            case 4:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    })));
+                case 3:
+                  snapshot = _context3.sent;
+                  console.log(snapshot);
+                  return _context3.abrupt("return", snapshot);
+
+                case 6:
+                case "end":
+                  return _context3.stop();
+              }
+            }
+          }, _callee3);
+        }));
+
+        return function (_x5, _x6) {
+          return _ref4.apply(this, arguments);
+        };
+      }()
+    );
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_10__["useEffect"])(function () {
@@ -828,13 +975,10 @@ function useProvideAuth() {
     signin: signin,
     // signup,
     signout: signout,
-    uploadImage: uploadImage
+    uploadImage: uploadImage,
+    updateProfile: updateProfile
   };
-} // useProvideAuth.getInitialProps = async ({ req, res }) => {
-//   res.user = {}
-//   const userAgent = req ? console.log('auth.currentUser') : 'console.log(auth.currentUser)'
-//   return { userAgent }
-// }
+}
 
 /***/ }),
 
@@ -69317,14 +69461,18 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 // }
 
 var login = function login(_ref) {
-  var token = _ref.token;
-  var auth = Object(_lib_db__WEBPACK_IMPORTED_MODULE_3__["useAuth"])(); // console.log(auth.user.refreshToken)
+  var token = _ref.token,
+      user = _ref.user;
+  var auth = Object(_lib_db__WEBPACK_IMPORTED_MODULE_3__["useAuth"])();
 
-  if (token && token === auth.user.refreshToken) {
+  if (token && auth.user) {
+    // if(token && token === auth.user.refreshToken) {
     return __jsx(_components_Profile__WEBPACK_IMPORTED_MODULE_6__["default"], null);
   }
 
-  return __jsx(_components_Login__WEBPACK_IMPORTED_MODULE_5__["default"], null);
+  return __jsx(_components_Login__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    user: user
+  });
 };
 
 login.getInitialProps =
@@ -69410,7 +69558,7 @@ function Loggedin(ctx) {
 
 /***/ }),
 
-/***/ 7:
+/***/ 11:
 /*!***********************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2Fhome%2Faekryzprobook%2FDesktop%2Fnext.js%2Fadministrator%2Fpages%2Findex.js ***!
   \***********************************************************************************************************************************************/
@@ -69433,5 +69581,5 @@ module.exports = dll_5f137288facb1107b491;
 
 /***/ })
 
-},[[7,"static/runtime/webpack.js","styles"]]]);
+},[[11,"static/runtime/webpack.js","styles"]]]);
 //# sourceMappingURL=index.js.map

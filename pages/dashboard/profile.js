@@ -5,7 +5,7 @@ import { notLoggedin } from "../../utils/auth";
 import { useAuth } from '../../lib/db'
 // import Login from "../../components/Login";
 
-const profile = ({token}) => {
+const profile = ({user}) => {
 
   const auth = useAuth()
   // const router = useRouter()
@@ -23,7 +23,7 @@ const profile = ({token}) => {
 
   // if (token && token === refreshToken) {
     return (
-      <Profile/>
+      <Profile user={user}/>
     )
   // }
   // return <></>
