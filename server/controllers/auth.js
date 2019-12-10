@@ -1,6 +1,5 @@
 export const login = (firebase) => (req, res) => {
   if (!req.body) return res.sendStatus(400)
-
   const token = req.body.token
 
   firebase
@@ -11,7 +10,7 @@ export const login = (firebase) => (req, res) => {
       return decodedToken
     })
     .then(decodedToken => res.json({ status: true, decodedToken }))
-    .catch(error => res.json({ error }))
+    .catch(error => res.json({ error: error.message }))
 }
 
 export const logout = (req, res) => {

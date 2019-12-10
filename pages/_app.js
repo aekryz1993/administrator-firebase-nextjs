@@ -1,17 +1,40 @@
 import React from 'react'
+import { Provider } from 'react-redux'
 import App from 'next/app'
-import { ProvideAuth } from "../lib/db";
+import withRedux from 'next-redux-wrapper'
+import makeStore from '../store/index'
 import Layout from "../components/Layout";
+import { assignCheckSession } from "../auth/apis-auth";
 
-export default class MyApp extends App {
+class MyApp extends App {
+  static async getInitialProps({ Component, ctx }) {
+    const pageProps = Component.getInitialProps
+      ? await Component.getInitialProps(ctx)
+      : {}
+
+      return { pageProps }
+  }
+
+  unsubscribe = null;
+
+  componentDidMount() {
+    this.unsubscribe = assignCheckSession()
+  }
+  
+  componentWillUnmount() {
+    this.unsubscribe();
+  }
+
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, store } = this.props
     return (
-      <ProvideAuth>
+      <Provider store={store}>
         <Layout>
           <Component {...pageProps} />
         </Layout>
-      </ProvideAuth>
+      </Provider>
     )
   }
 }
+
+export default withRedux(makeStore)(MyApp)

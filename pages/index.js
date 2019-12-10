@@ -1,11 +1,13 @@
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 // import Router from "next/router";
 // import nextCookie from 'next-cookies'
-import { useAuth } from '../lib/db'
-import { Loggedin } from "../utils/auth";
-import Login from "../components/Login";
-import Profile from "../components/Profile";
+import { firebase } from '../lib/db'
+// import { Loggedin } from "../utils/auth";
+// import Login from "../components/Login";
+// import Profile from "../components/Profile";
 // import { Router } from "next/router";
+import LoginContainer from "../auth/LoginContainer";
+import LogoutContainer from "../auth/LogoutContainer";
 
 // const index = ({token}) => {
 
@@ -36,19 +38,25 @@ import Profile from "../components/Profile";
 
 const login = ({token, user}) => {
 
-  const auth = useAuth()
+  // const auth = useAuth()
 
-  if(token && auth.user) {
-  // if(token && token === auth.user.refreshToken) {
-    return (
-      <Profile/>
-    )
-  }
-  return <Login user={user}/>
+  // if(token && auth.user) {
+  // // if(token && token === auth.user.refreshToken) {
+  //   return (
+  //     <Profile/>
+  //   )
+  // }
+  // return <Login user={user}/>
+  return (
+    <>
+      <LoginContainer />
+      <LogoutContainer />
+    </>
+  )
 }
 
-login.getInitialProps = async (ctx) => {
-  return Loggedin(ctx)
-}
+// login.getInitialProps = async (ctx) => {
+//   return Loggedin(ctx)
+// }
 
 export default login
