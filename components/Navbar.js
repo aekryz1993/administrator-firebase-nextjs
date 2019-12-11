@@ -1,17 +1,13 @@
 import { useState, useEffect, useRef } from "react";
-import EditProfile from "./EditProfile";
 import navbarStyle from "../stylesheet/components/navbar.css";
-import { useAuth } from "../lib/db";
+import EditProfileContainer from "../userSession/EditProfileContainer";
 
 const NavBar = ({ user }) => {
 
-  const auth = useAuth()
-
   const [show, setShow] = useState(false);
   const [close, setClose] = useState(false);
-  const [save, setSave] = useState(false);
-  const [currentUserPic, setCurrentUser] = useState(null);
-  const [name, setName] = useState('');
+  const [name, setName] = useState(user.name || user.displayName);
+  const [photoURL, setPhotoURL] = useState(user.picture || user.photoURL);
 
   const node = useRef();
   const node2 = useRef();
@@ -32,15 +28,6 @@ const NavBar = ({ user }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickCloseEditprofile);
     };
-  }, []);
-
-  useEffect(() => {
-    const displayName = auth.user ? auth.user.displayName : user.name
-    const photoURL = auth.user ? auth.user.photoURL : user.picture
-    const uid = auth.user ? auth.user.uid : user.user_id
-
-    setCurrentUser(photoURL)
-    setName(displayName)
   }, []);
 
   // Dropdown display and close
@@ -76,20 +63,8 @@ const NavBar = ({ user }) => {
     return close ? setClose(false) : setClose(true)
   }
 
-  const handleClickCloseEditProfilebtn = () => {
-    setClose(false)
-  }
-
   const displayEditProfile = () => {
     return close ? navbarStyle.displayEditProfile : ''
-  }
-
-  const handleSaveClick = () => {
-    setSave(true)
-  }
-
-  const triggerUpdate = () => {
-    setSave(false)
   }
 
   return (
@@ -110,7 +85,7 @@ const NavBar = ({ user }) => {
           <li className={`${navbarStyle.navItem} ${navbarStyle.profileInfo}`}>
             <img
               className={`${navbarStyle.picProfile}`}
-              src={currentUserPic}
+              src={photoURL}
             />
             <span className={navbarStyle.username}>{name}</span>
             <div className={navbarStyle.dropdown} >
@@ -130,21 +105,12 @@ const NavBar = ({ user }) => {
         </ul>
       </nav>
       <div className={`${navbarStyle.editProfile} ${displayEditProfile()}`} ref={editProfile}>
-        <nav className={`${navbarStyle.editprofileNav} ${navbarStyle.clearfix}`}>
-          <div className={`${navbarStyle.firstItem}`}>
-            <div className={`${navbarStyle.closebtn}`} onClick={handleClickCloseEditProfilebtn}>
-              <div className={`${navbarStyle.closeline}`}></div>
-              <div className={`${navbarStyle.closeline}`}></div>
-            </div>
-          </div>
-          <div className={`${navbarStyle.secondItem}`}>
-            <span className={`${navbarStyle.title}`}>Edit profile</span>
-          </div>
-          <div className={`${navbarStyle.thirdItem}`}>
-            <div className={`${navbarStyle.savebtn}`} onClick={handleSaveClick}>Save</div>
-          </div>
-        </nav>
-        <EditProfile save={save} triggerUpdate={triggerUpdate} userServer={user} />
+        <EditProfileContainer
+          setClose={setClose}
+          userServer={user}
+          setName={setName}
+          setPhotoURL={setPhotoURL}
+        />
       </div>
     </div>
   )

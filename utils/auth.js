@@ -2,25 +2,25 @@ import nextCookie from 'next-cookies'
 import Router from "next/router";
 
 export function notLoggedin(ctx) {
-  const { token } = nextCookie(ctx)
+  const { token_id } = nextCookie(ctx)
 
   const user = ctx.req && ctx.req.session ? ctx.req.session.decodedToken : null
-  
+
   if (!user) {
     if (typeof window === 'undefined') {
       ctx.res.writeHead(302, { Location: '/' })
       ctx.res.end()
     } else {
-      if(!token) Router.push('/')
+      if(!token_id) Router.push('/')
     }
   }
 
-  return { user, token }
+  return { user, token_id }
 }
 
 export function Loggedin(ctx) {
 
-  const { token } = nextCookie(ctx)
+  const { token_id } = nextCookie(ctx)
   const user = ctx.req && ctx.req.session ? ctx.req.session.decodedToken : null
 
   if (user) {
@@ -33,5 +33,5 @@ export function Loggedin(ctx) {
     }
   }
 
-  return { user, token }
+  return { user, token_id }
 }

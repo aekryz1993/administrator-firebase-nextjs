@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Logout from "./Logout";
-import { logoutRequest, loginRequest, logoutRequestEnded } from '../store/actions/auth';
+import { logoutRequest, logoutRequestEnded } from '../store/actions/auth';
 
 const mapStateToProps = (state, ownProps) => {
   const {message, redirect} = state.logoutReducer;
@@ -12,7 +12,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   logoutRequest: () => dispatch(logoutRequest()),
-  loginRequest: () => dispatch(loginRequest()),
   logoutRequestEnded: () => dispatch(logoutRequestEnded())
 })
 

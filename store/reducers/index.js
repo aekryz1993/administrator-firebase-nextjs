@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { reducer as formReducer } from 'redux-form';
-import { userSessionReducer, updateUserSessionReducer } from "./userSession";
+import { userSessionReducer, updateUserSessionReducer, uploadPictureProfileReducer, listenPictureChangeReducer } from "./userSession";
 import { loginReducer, logoutReducer } from "./auth";
 import { LOGIN_REQUEST } from "../actionTypes/auth";
 
@@ -9,6 +9,8 @@ const rootReducer = combineReducers({
   logoutReducer: logoutReducer,
   userSessionReducer: userSessionReducer,
   updateUserSessionReducer: updateUserSessionReducer,
+  uploadPictureProfileReducer: uploadPictureProfileReducer,
+  listenPictureChangeReducer: listenPictureChangeReducer,
 
   form: formReducer.plugin({
     login: (state, action) => {

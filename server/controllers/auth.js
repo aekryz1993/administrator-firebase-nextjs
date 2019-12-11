@@ -9,7 +9,7 @@ export const login = (firebase) => (req, res) => {
       req.session.decodedToken = decodedToken
       return decodedToken
     })
-    .then(decodedToken => res.json({ status: true, decodedToken }))
+    .then(() => res.redirect('/dashboard/profile' ))
     .catch(error => res.json({ error: error.message }))
 }
 
@@ -17,11 +17,11 @@ export const logout = (req, res) => {
   req.session.decodedToken = null
   req.user = null
 
-  return req.session.destroy(err => {
+  req.session.destroy(err => {
     if (err) {
       console.log(err)
     } else {
-      return res.json({ status: true })
+      return res.redirect('/' )
     }
   })
 }

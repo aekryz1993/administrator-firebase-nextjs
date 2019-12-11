@@ -93429,6 +93429,11 @@ function (_App) {
       this.unsubscribe = Object(_auth_apis_auth__WEBPACK_IMPORTED_MODULE_15__["assignCheckSession"])();
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.unsubscribe = Object(_auth_apis_auth__WEBPACK_IMPORTED_MODULE_15__["assignCheckSession"])();
+    }
+  }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.unsubscribe();
@@ -93536,7 +93541,7 @@ var LOGOUT_REQUEST_ENDED = 'LOGOUT_REQUEST_ENDED';
 /*!******************************************!*\
   !*** ./store/actionTypes/userSession.js ***!
   \******************************************/
-/*! exports provided: FETCH_USERSESSION, FETCH_USERSESSION_SUCCED, FETCH_USERSESSION_FAILED, FETCH_USERSESSION_ENDED, UPDATE_USERSESSION, UPDATE_USERSESSION_SUCCED, UPDATE_USERSESSION_FAILED, UPDATE_USERSESSION_ENDED */
+/*! exports provided: FETCH_USERSESSION, FETCH_USERSESSION_SUCCED, FETCH_USERSESSION_FAILED, FETCH_USERSESSION_ENDED, UPDATE_USERSESSION, UPDATE_USERSESSION_SUCCED, UPDATE_USERSESSION_FAILED, UPDATE_USERSESSION_ENDED, UPLOAD_PROFILE_PICTURE, UPLOAD_PROFILE_PICTURE_SUCCED, UPLOAD_PROFILE_PICTURE_FAILED, UPLOAD_PROFILE_PICTURE_ENDED, START_LISTEN_PICTURE_CHANGE, LISTENING_PICTURE_CHANGE, STOP_LISTEN_PICTURE_CHANGE */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -93549,6 +93554,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_USERSESSION_SUCCED", function() { return UPDATE_USERSESSION_SUCCED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_USERSESSION_FAILED", function() { return UPDATE_USERSESSION_FAILED; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPDATE_USERSESSION_ENDED", function() { return UPDATE_USERSESSION_ENDED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPLOAD_PROFILE_PICTURE", function() { return UPLOAD_PROFILE_PICTURE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPLOAD_PROFILE_PICTURE_SUCCED", function() { return UPLOAD_PROFILE_PICTURE_SUCCED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPLOAD_PROFILE_PICTURE_FAILED", function() { return UPLOAD_PROFILE_PICTURE_FAILED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UPLOAD_PROFILE_PICTURE_ENDED", function() { return UPLOAD_PROFILE_PICTURE_ENDED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "START_LISTEN_PICTURE_CHANGE", function() { return START_LISTEN_PICTURE_CHANGE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LISTENING_PICTURE_CHANGE", function() { return LISTENING_PICTURE_CHANGE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "STOP_LISTEN_PICTURE_CHANGE", function() { return STOP_LISTEN_PICTURE_CHANGE; });
 // fetch userSession
 var FETCH_USERSESSION = 'FETCH_USERSESSION';
 var FETCH_USERSESSION_SUCCED = 'FETCH_USERSESSION_SUCCED';
@@ -93558,7 +93570,16 @@ var FETCH_USERSESSION_ENDED = 'FETCH_USERSESSION_ENDED'; // update userSession
 var UPDATE_USERSESSION = 'UPDATE_USERSESSION';
 var UPDATE_USERSESSION_SUCCED = 'UPDATE_USERSESSION_SUCCED';
 var UPDATE_USERSESSION_FAILED = 'UPDATE_USERSESSION_FAILED';
-var UPDATE_USERSESSION_ENDED = 'UPDATE_USERSESSION_ENDED';
+var UPDATE_USERSESSION_ENDED = 'UPDATE_USERSESSION_ENDED'; // Upload profile picture
+
+var UPLOAD_PROFILE_PICTURE = 'UPLOAD_PROFILE_PICTURE';
+var UPLOAD_PROFILE_PICTURE_SUCCED = 'UPLOAD_PROFILE_PICTURE_SUCCED';
+var UPLOAD_PROFILE_PICTURE_FAILED = 'UPLOAD_PROFILE_PICTURE_FAILED';
+var UPLOAD_PROFILE_PICTURE_ENDED = 'UPLOAD_PROFILE_PICTURE_ENDED'; // Listen picture change
+
+var START_LISTEN_PICTURE_CHANGE = 'START_LISTEN_PICTURE_CHANGE';
+var LISTENING_PICTURE_CHANGE = 'LISTENING_PICTURE_CHANGE';
+var STOP_LISTEN_PICTURE_CHANGE = 'STOP_LISTEN_PICTURE_CHANGE';
 
 /***/ }),
 
@@ -93645,6 +93666,163 @@ var logoutRequestEnded = function logoutRequestEnded() {
 
 /***/ }),
 
+/***/ "./store/actions/userSession.js":
+/*!**************************************!*\
+  !*** ./store/actions/userSession.js ***!
+  \**************************************/
+/*! exports provided: startFetchCurrentUser, succedFetch, failedFetch, logoutFinished, startUpdateCurrentUser, succedUpdate, failedUpdate, updateFinished, startListenPictureChange, listeningPictureChange, stopListenPictureChange, uploadProfilePicture, successedUploadProfilePicture, failedUploadProfilePicture, uploadProfilePictureFinished */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startFetchCurrentUser", function() { return startFetchCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "succedFetch", function() { return succedFetch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "failedFetch", function() { return failedFetch; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutFinished", function() { return logoutFinished; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startUpdateCurrentUser", function() { return startUpdateCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "succedUpdate", function() { return succedUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "failedUpdate", function() { return failedUpdate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFinished", function() { return updateFinished; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startListenPictureChange", function() { return startListenPictureChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listeningPictureChange", function() { return listeningPictureChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "stopListenPictureChange", function() { return stopListenPictureChange; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadProfilePicture", function() { return uploadProfilePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "successedUploadProfilePicture", function() { return successedUploadProfilePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "failedUploadProfilePicture", function() { return failedUploadProfilePicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadProfilePictureFinished", function() { return uploadProfilePictureFinished; });
+/* harmony import */ var _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes/userSession */ "./store/actionTypes/userSession.js");
+ // *************** Fetch **********************
+
+var startFetchCurrentUser = function startFetchCurrentUser() {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["FETCH_USERSESSION"]
+  };
+};
+var succedFetch = function succedFetch(payload) {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["FETCH_USERSESSION_SUCCED"],
+    payload: {
+      email: payload.data.email
+    }
+  };
+};
+var failedFetch = function failedFetch(payload) {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["FETCH_USERSESSION_FAILED"],
+    payload: {
+      error: 'DOESN\'T AUTHORIZED'
+    }
+  };
+};
+var logoutFinished = function logoutFinished() {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["FETCH_USERSESSION_ENDED"]
+  };
+}; // *************** Update **********************
+
+var startUpdateCurrentUser = function startUpdateCurrentUser(uid) {
+  return function (displayName, photoURL) {
+    return {
+      type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["UPDATE_USERSESSION"],
+      payload: {
+        uid: uid,
+        displayName: displayName,
+        photoURL: photoURL
+      }
+    };
+  };
+};
+var succedUpdate = function succedUpdate(response) {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["UPDATE_USERSESSION_SUCCED"],
+    payload: {
+      message: response.message
+    }
+  };
+};
+var failedUpdate = function failedUpdate(response) {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["UPDATE_USERSESSION_FAILED"],
+    payload: {
+      error: response.error
+    }
+  };
+};
+var updateFinished = function updateFinished() {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["UPDATE_USERSESSION_ENDED"]
+  };
+}; // listen to picture change
+
+var startListenPictureChange = function startListenPictureChange(uid) {
+  return function (fields, setFields) {
+    return {
+      type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["START_LISTEN_PICTURE_CHANGE"],
+      payload: {
+        uid: uid,
+        fields: fields,
+        setFields: setFields
+      }
+    };
+  };
+};
+var listeningPictureChange = function listeningPictureChange() {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["LISTENING_PICTURE_CHANGE"],
+    payload: {
+      message: 'Start listening'
+    }
+  };
+};
+var stopListenPictureChange = function stopListenPictureChange() {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["STOP_LISTEN_PICTURE_CHANGE"],
+    payload: {
+      message: 'Stop listening'
+    }
+  };
+}; // Upload profile picture
+
+var uploadProfilePicture = function uploadProfilePicture(uid, picture) {
+  return function (fields, setFields) {
+    return {
+      type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["UPLOAD_PROFILE_PICTURE"],
+      payload: {
+        uid: uid,
+        picture: picture,
+        fields: fields,
+        setFields: setFields
+      }
+    };
+  };
+};
+var successedUploadProfilePicture = function successedUploadProfilePicture(payload) {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["UPLOAD_PROFILE_PICTURE_SUCCED"],
+    payload: {
+      message: payload.message,
+      uid: payload.uid,
+      fields: payload.fields,
+      setFields: payload.setFields
+    }
+  };
+};
+var failedUploadProfilePicture = function failedUploadProfilePicture(payload) {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["UPLOAD_PROFILE_PICTURE_FAILED"],
+    payload: {
+      message: payload.error
+    }
+  };
+};
+var uploadProfilePictureFinished = function uploadProfilePictureFinished(payload) {
+  return {
+    type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["UPLOAD_PROFILE_PICTURE_ENDED"]
+  };
+};
+
+/***/ }),
+
 /***/ "./store/epics/auth.js":
 /*!*****************************!*\
   !*** ./store/epics/auth.js ***!
@@ -93659,9 +93837,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-observable */ "./node_modules/redux-observable/lib/esm/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actions/auth */ "./store/actions/auth.js");
-/* harmony import */ var _actionTypes_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actionTypes/auth */ "./store/actionTypes/auth.js");
-/* harmony import */ var _auth_apis_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../auth/apis-auth */ "./auth/apis-auth.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/router */ "./node_modules/next/dist/client/router.js");
+/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _actions_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actions/auth */ "./store/actions/auth.js");
+/* harmony import */ var _actionTypes_auth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actionTypes/auth */ "./store/actionTypes/auth.js");
+/* harmony import */ var _auth_apis_auth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../auth/apis-auth */ "./auth/apis-auth.js");
+
 
 
 
@@ -93670,21 +93851,25 @@ __webpack_require__.r(__webpack_exports__);
  // ******************* Login ****************************
 
 var loginEpic = function loginEpic(action$) {
-  return action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_0__["ofType"])(_actionTypes_auth__WEBPACK_IMPORTED_MODULE_4__["LOGIN_REQUEST"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["mergeMap"])(function (action) {
-    return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_auth_apis_auth__WEBPACK_IMPORTED_MODULE_5__["login"])(action.payload.email, action.payload.password)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (response) {
-      return Object(_actions_auth__WEBPACK_IMPORTED_MODULE_3__["loginSucced"])(response);
+  return action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_0__["ofType"])(_actionTypes_auth__WEBPACK_IMPORTED_MODULE_5__["LOGIN_REQUEST"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["mergeMap"])(function (action) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_auth_apis_auth__WEBPACK_IMPORTED_MODULE_6__["login"])(action.payload.email, action.payload.password)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (response) {
+      return Object(_actions_auth__WEBPACK_IMPORTED_MODULE_4__["loginSucced"])(response);
+    }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function () {
+      return next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push('/dashboard/profile');
     }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(function (error) {
-      return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(Object(_actions_auth__WEBPACK_IMPORTED_MODULE_3__["loginFailed"])(error));
+      return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(Object(_actions_auth__WEBPACK_IMPORTED_MODULE_4__["loginFailed"])(error));
     }));
   }));
 }; // ******************* Logout ****************************
 
 var logoutEpic = function logoutEpic(action$) {
-  return action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_0__["ofType"])(_actionTypes_auth__WEBPACK_IMPORTED_MODULE_4__["LOGOUT_REQUEST"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["mergeMap"])(function () {
-    return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_auth_apis_auth__WEBPACK_IMPORTED_MODULE_5__["logout"])()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (response) {
-      return Object(_actions_auth__WEBPACK_IMPORTED_MODULE_3__["succedLogout"])(response);
+  return action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_0__["ofType"])(_actionTypes_auth__WEBPACK_IMPORTED_MODULE_5__["LOGOUT_REQUEST"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["mergeMap"])(function () {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_auth_apis_auth__WEBPACK_IMPORTED_MODULE_6__["logout"])()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["map"])(function (response) {
+      return Object(_actions_auth__WEBPACK_IMPORTED_MODULE_4__["succedLogout"])(response);
+    }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["tap"])(function () {
+      return next_router__WEBPACK_IMPORTED_MODULE_3___default.a.push('/');
     }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["catchError"])(function (error) {
-      return Object(_actions_auth__WEBPACK_IMPORTED_MODULE_3__["failedLogout"])(error);
+      return Object(_actions_auth__WEBPACK_IMPORTED_MODULE_4__["failedLogout"])(error);
     }));
   }));
 };
@@ -93703,9 +93888,66 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rootEpic", function() { return rootEpic; });
 /* harmony import */ var redux_observable__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-observable */ "./node_modules/redux-observable/lib/esm/index.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./store/epics/auth.js");
+/* harmony import */ var _userSession__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userSession */ "./store/epics/userSession.js");
 
 
-var rootEpic = Object(redux_observable__WEBPACK_IMPORTED_MODULE_0__["combineEpics"])(_auth__WEBPACK_IMPORTED_MODULE_1__["loginEpic"], _auth__WEBPACK_IMPORTED_MODULE_1__["logoutEpic"]);
+
+var rootEpic = Object(redux_observable__WEBPACK_IMPORTED_MODULE_0__["combineEpics"])(_auth__WEBPACK_IMPORTED_MODULE_1__["loginEpic"], _auth__WEBPACK_IMPORTED_MODULE_1__["logoutEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["uploadPictureProfileEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["listenPictureChangeEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["updateUserSessionEpic"]);
+
+/***/ }),
+
+/***/ "./store/epics/userSession.js":
+/*!************************************!*\
+  !*** ./store/epics/userSession.js ***!
+  \************************************/
+/*! exports provided: uploadPictureProfileEpic, listenPictureChangeEpic, updateUserSessionEpic */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadPictureProfileEpic", function() { return uploadPictureProfileEpic; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listenPictureChangeEpic", function() { return listenPictureChangeEpic; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserSessionEpic", function() { return updateUserSessionEpic; });
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var redux_observable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-observable */ "./node_modules/redux-observable/lib/esm/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actionTypes/userSession */ "./store/actionTypes/userSession.js");
+/* harmony import */ var _userSession_apis_userSession__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../userSession/apis-userSession */ "./userSession/apis-userSession.js");
+/* harmony import */ var _actions_userSession__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/userSession */ "./store/actions/userSession.js");
+
+
+
+
+
+ // ************** Upload picture profile *********************
+
+var uploadPictureProfileEpic = function uploadPictureProfileEpic(action$) {
+  return action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_actionTypes_userSession__WEBPACK_IMPORTED_MODULE_3__["UPLOAD_PROFILE_PICTURE"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["mergeMap"])(function (action) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_userSession_apis_userSession__WEBPACK_IMPORTED_MODULE_4__["uploadPicture"])(action.payload.uid, action.payload.picture)(action.payload.fields, action.payload.setFields)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (response) {
+      return Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["successedUploadProfilePicture"])(response);
+    }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(function (error) {
+      return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["failedUploadProfilePicture"])(error));
+    }));
+  }));
+}; // ************** listen to picture profile change *********************
+
+var listenPictureChangeEpic = function listenPictureChangeEpic(action$) {
+  return action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_actionTypes_userSession__WEBPACK_IMPORTED_MODULE_3__["START_LISTEN_PICTURE_CHANGE"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["mergeMap"])(function (action) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(Object(_userSession_apis_userSession__WEBPACK_IMPORTED_MODULE_4__["listenPictureChange"])(action.payload.uid)(action.payload.fields, action.payload.setFields)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function () {
+      return Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["stopListenPictureChange"])();
+    }));
+  }));
+}; // ************** Update profile userSession *********************
+
+var updateUserSessionEpic = function updateUserSessionEpic(action$) {
+  return action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_actionTypes_userSession__WEBPACK_IMPORTED_MODULE_3__["UPDATE_USERSESSION"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["mergeMap"])(function (action) {
+    return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_userSession_apis_userSession__WEBPACK_IMPORTED_MODULE_4__["updateProfile"])(action.payload.uid)(action.payload.displayName, action.payload.photoURL)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(function (response) {
+      return Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["succedUpdate"])(response);
+    }), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(function (response) {
+      return Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["failedUpdate"])(response);
+    }));
+  }));
+};
 
 /***/ }),
 
@@ -93886,6 +94128,8 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
   logoutReducer: _auth__WEBPACK_IMPORTED_MODULE_3__["logoutReducer"],
   userSessionReducer: _userSession__WEBPACK_IMPORTED_MODULE_2__["userSessionReducer"],
   updateUserSessionReducer: _userSession__WEBPACK_IMPORTED_MODULE_2__["updateUserSessionReducer"],
+  uploadPictureProfileReducer: _userSession__WEBPACK_IMPORTED_MODULE_2__["uploadPictureProfileReducer"],
+  listenPictureChangeReducer: _userSession__WEBPACK_IMPORTED_MODULE_2__["listenPictureChangeReducer"],
   form: redux_form__WEBPACK_IMPORTED_MODULE_1__["reducer"].plugin({
     login: function login(state, action) {
       switch (action.type) {
@@ -93906,13 +94150,15 @@ var rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])(
 /*!***************************************!*\
   !*** ./store/reducers/userSession.js ***!
   \***************************************/
-/*! exports provided: userSessionReducer, updateUserSessionReducer */
+/*! exports provided: userSessionReducer, updateUserSessionReducer, listenPictureChangeReducer, uploadPictureProfileReducer */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "userSessionReducer", function() { return userSessionReducer; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserSessionReducer", function() { return updateUserSessionReducer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listenPictureChangeReducer", function() { return listenPictureChangeReducer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadPictureProfileReducer", function() { return uploadPictureProfileReducer; });
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
@@ -93938,7 +94184,6 @@ __webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
-
 
  // ********************* Fetch *************************
 
@@ -93966,32 +94211,218 @@ var userSessionReducer = function userSessionReducer() {
 }; // ********************* Update *************************
 
 var updateUserSessionReducer = function updateUserSessionReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    redirect: false
-  };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["UPDATE_USERSESSION_SUCCED"]:
       return _objectSpread({}, state, {
-        message: action.payload.message,
-        redirect: true
+        message: action.payload.message
       });
 
     case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["UPDATE_USERSESSION_FAILED"]:
       return _objectSpread({}, state, {
-        message: action.payload.error,
-        redirect: false
-      });
-
-    case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["UPDATE_USERSESSION_ENDED"]:
-      return _objectSpread({}, state, {
-        redirect: false
+        message: action.payload.error
       });
 
     default:
       return state;
   }
+}; // ********************* Listen to picture change *************************
+
+var listenPictureChangeReducer = function listenPictureChangeReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
+    listen: false
+  };
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["START_LISTEN_PICTURE_CHANGE"]:
+      return _objectSpread({}, state, {
+        listen: true
+      });
+
+    case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["STOP_LISTEN_PICTURE_CHANGE"]:
+      return _objectSpread({}, state, {
+        listen: false
+      });
+
+    default:
+      return state;
+  }
+}; // ********************* Upload profile picture *************************
+
+var uploadPictureProfileReducer = function uploadPictureProfileReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["UPLOAD_PROFILE_PICTURE_SUCCED"]:
+      return _objectSpread({}, state, {
+        message: action.payload.message
+      });
+
+    case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["UPLOAD_PROFILE_PICTURE_FAILED"]:
+      return _objectSpread({}, state, {
+        message: action.payload.error
+      });
+
+    default:
+      return state;
+  }
+};
+
+/***/ }),
+
+/***/ "./userSession/apis-userSession.js":
+/*!*****************************************!*\
+  !*** ./userSession/apis-userSession.js ***!
+  \*****************************************/
+/*! exports provided: updateProfile, uploadPicture, listenPictureChange */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProfile", function() { return updateProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadPicture", function() { return uploadPicture; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listenPictureChange", function() { return listenPictureChange; });
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/regenerator */ "./node_modules/@babel/runtime-corejs2/regenerator/index.js");
+/* harmony import */ var _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/asyncToGenerator */ "./node_modules/@babel/runtime-corejs2/helpers/esm/asyncToGenerator.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/promise */ "./node_modules/@babel/runtime-corejs2/core-js/promise.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var _lib_db__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../lib/db */ "./lib/db.js");
+
+
+
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
+ // *************** updateProfile **************************
+
+var updateProfile = function updateProfile(uid) {
+  return function (displayName, photoURL) {
+    if (!uid || !displayName || !photoURL) return;
+    return new _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_9___default.a(
+    /*#__PURE__*/
+    function () {
+      var _ref = Object(_babel_runtime_corejs2_helpers_esm_asyncToGenerator__WEBPACK_IMPORTED_MODULE_8__["default"])(
+      /*#__PURE__*/
+      _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.mark(function _callee(resolve, reject) {
+        var updateUserProfile;
+        return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_7___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.prev = 0;
+                updateUserProfile = _lib_db__WEBPACK_IMPORTED_MODULE_10__["functions"].httpsCallable('updateUserProfile');
+                _context.next = 4;
+                return updateUserProfile({
+                  uid: uid,
+                  displayName: displayName,
+                  photoURL: photoURL
+                });
+
+              case 4:
+                resolve({
+                  message: 'Profile has been successfully updated'
+                });
+                _context.next = 10;
+                break;
+
+              case 7:
+                _context.prev = 7;
+                _context.t0 = _context["catch"](0);
+                reject({
+                  error: 'update profile has been failed'
+                });
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, null, [[0, 7]]);
+      }));
+
+      return function (_x, _x2) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+  };
+}; // *************** UploadPicture **************************
+
+var uploadPicture = function uploadPicture(userId, picture) {
+  return function (fields, setFields) {
+    if (!picture || !userId) return;
+    return new _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_9___default.a(function (resolve, reject) {
+      try {
+        var uploadTask = _lib_db__WEBPACK_IMPORTED_MODULE_10__["storage"].ref("images/profile/".concat(userId, "/").concat(picture.name)).put(picture);
+        return uploadTask.on('state_changed', function (snapshot) {
+          var progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
+          setFields(_objectSpread({}, fields, {
+            progress: progress
+          }));
+          if (progress === 100) setFields(_objectSpread({}, fields, {
+            progress: 0
+          }));
+        }, function (error) {
+          console.log(error);
+          reject({
+            error: 'Failed to upload'
+          });
+        }, function () {
+          resolve({
+            message: 'successfully uploaded',
+            uid: userId,
+            fields: fields,
+            setFields: setFields
+          });
+          setFields(_objectSpread({}, fields, {
+            listenPicChange: true
+          }));
+        });
+      } catch (error) {
+        console.log(error);
+        reject({
+          error: 'Failed to upload'
+        });
+      }
+    });
+  };
+}; // ****************** listen picture change *************************
+
+var listenPictureChange = function listenPictureChange(userId) {
+  return function (fields, setFields) {
+    return _lib_db__WEBPACK_IMPORTED_MODULE_10__["firestore"].collection("photoProfileURLs").doc(userId).onSnapshot(function (doc) {
+      setFields(_objectSpread({}, fields, {
+        pictureURL: doc.data().thumbnail,
+        listenPicChange: false
+      }));
+    });
+  };
 };
 
 /***/ }),

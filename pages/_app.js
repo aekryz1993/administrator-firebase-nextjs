@@ -20,6 +20,11 @@ class MyApp extends App {
   componentDidMount() {
     this.unsubscribe = assignCheckSession()
   }
+
+  componentDidUpdate() {
+    this.unsubscribe = assignCheckSession()
+  }
+  
   
   componentWillUnmount() {
     this.unsubscribe();

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-const Logout = ({ message, redirect, logoutRequest, logoutRequestEnded, loginRequest }) => {
+const Logout = ({ message, redirect, logoutRequest, logoutRequestEnded }) => {
 
   useEffect(() => {
     if (message) console.log(message)
@@ -12,7 +12,6 @@ const Logout = ({ message, redirect, logoutRequest, logoutRequestEnded, loginReq
   return (
     <>
       <button onClick={logoutRequest}>Logout</button>
-      <button onClick={loginRequest}>Login</button>
     </>
   )
 }
