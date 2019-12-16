@@ -204,6 +204,12 @@ a {
   background-color: rgb(54, 54, 54);
 }
 
+.dropdownContentLine___eDtI9 {
+  background-color: rgb(141, 141, 141);
+  height: 1px;
+  width: 100%;
+}
+
 .editProfile___76pBw {
   position: absolute;
   /* -------------------------------------------------------- */
@@ -467,6 +473,108 @@ a {
     left: 0;
     right: 0;
   }
+}
+.container___1Vitw {
+  margin: 3vmin 2vmax 0 2vmax;
+}
+
+.h1___Jtx3E {
+  font-size: 2rem;
+  margin-bottom: 5vmin;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav___2-IDg {
+  border-bottom: 1px solid #999;
+  padding-bottom: .7em;
+}
+
+.nav___2-IDg > .navItem___3rCV4 {
+  margin-right: 2vmax;
+  padding: .2em 0 .7em .1em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+}
+
+.nav___2-IDg > .navItem___3rCV4.active___1r2pz {
+  border-bottom: 3px solid #111;
+  color: #111;
+}
+
+.dashboard___28Sg1 {
+  margin: 8vh 4vw 0;
+  border: 1px solid #999;
+  height: 50vh;
+  box-shadow: 1px 1px 3px 1px rgba(82, 82, 82, 0.226);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.container___3t56E {
+  margin: 3vmax 0 0 3vmin
+}
+
+.titleContainer___3Jyuh {
+  background-color: rgb(224, 224, 224);
+  max-width: 50%;
+  padding: .5rem 0 0;
+  border-radius: 2px 2px 0 0;
+  -webkit-border-radius: 2px 2px 0 0;
+  -moz-border-radius: 2px 2px 0 0;
+  -ms-border-radius: 2px 2px 0 0;
+  -o-border-radius: 2px 2px 0 0;
+  margin-bottom: 10vh;
+}
+
+.labelTitle___guz7g {
+  display: block;
+  padding-left: .8rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  color: #555;
+}
+
+.inputTitle___35eGf {
+  background-color: rgb(224, 224, 224);
+  box-sizing: border-box;
+  width: 100%;
+  padding: .5rem .1rem;
+  border: none;
+  border-bottom: 2px solid #999;
+  font-size: 1rem;
+  transition: .2s ease;
+  -webkit-transition: .2s ease;
+  -moz-transition: .2s ease;
+  -ms-transition: .2s ease;
+  -o-transition: .2s ease;
+}
+
+.inputTitle___35eGf::-webkit-input-placeholder { /* Edge */
+  color: #555;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.inputTitle___35eGf:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #555;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.inputTitle___35eGf::placeholder {
+  color: #555;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.inputTitle___35eGf:focus {
+  border-bottom: 2px solid #111;
 }
 
 /*# sourceMappingURL=styles.chunk.css.map*/

@@ -1,0 +1,41 @@
+.container {
+  margin: 3vmin 2vmax 0 2vmax;
+}
+
+.h1 {
+  font-size: 2rem;
+  margin-bottom: 5vmin;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.nav {
+  border-bottom: 1px solid #999;
+  padding-bottom: .7em;
+}
+
+.nav > .navItem {
+  margin-right: 2vmax;
+  padding: .2em 0 .7em .1em;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+}
+
+.nav > .navItem.active {
+  border-bottom: 3px solid #111;
+  color: #111;
+}
+
+.dashboard {
+  margin: 8vh 4vw 0;
+  border: 1px solid #999;
+  height: 50vh;
+  box-shadow: 1px 1px 3px 1px rgba(82, 82, 82, 0.226);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}

@@ -1,4 +1,22 @@
-import { storage, functions, firestore } from "../lib/db";
+// import axios from "axios";
+import { storage, functions, database } from "../lib/db";
+import { firebase } from "../lib/db";
+
+// *************** Fetch userSession **********************
+export const fetchUserSession = () => {
+  return new Promise((resolve, reject) => {
+    try {
+      const authUser = firebase.auth().currentUser
+      if (user) {
+        resolve({ authUser: authUser, message: 'successful fetch' })
+      } else {
+        reject({ error: 'there is not user' })
+      }
+    } catch (error) {
+      reject({ error: 'fetch user failed' })
+    }
+  });
+}
 
 // *************** updateProfile **************************
 export const updateProfile = (uid) => (displayName, photoURL) => {
@@ -7,9 +25,12 @@ export const updateProfile = (uid) => (displayName, photoURL) => {
     try {
       const updateUserProfile = functions.httpsCallable('updateUserProfile');
       await updateUserProfile({ uid: uid, displayName: displayName, photoURL: photoURL })
-      resolve({message: 'Profile has been successfully updated'})
+      // await axios.post('/api/user', {
+      //   uid: uid
+      // })
+      resolve({ message: 'Profile has been successfully updated' })
     } catch (error) {
-      reject({error: 'update profile has been failed'})
+      reject({ error: 'update profile has been failed' })
     }
   });
 }
@@ -51,9 +72,12 @@ export const uploadPicture = (userId, picture) => (fields, setFields) => {
 }
 
 // ****************** listen picture change *************************
-export const listenPictureChange = (userId) => (fields, setFields) => {
-  return firestore.collection("photoProfileURLs").doc(userId)
-    .onSnapshot(doc => {
-      setFields({ ...fields, pictureURL: doc.data().thumbnail, listenPicChange: false })
-    })
+export const listenPictureChange = (userId) => (fields, setFields, setPictureURL) => {
+  const profilePictures = database.ref('profilePictures')
+  const photoProfileURLs = profilePictures.child(`'photoProfileURLs'/${userId}`)
+
+  return photoProfileURLs.on('value', snapshot => {
+    setFields({ ...fields, listenPicChange: false })
+    setPictureURL(snapshot.val().thumbnail)
+  })
 }

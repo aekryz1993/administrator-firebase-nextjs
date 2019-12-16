@@ -151,7 +151,8 @@ const assignCheckSession = () => _lib_db__WEBPACK_IMPORTED_MODULE_3__["firebase"
     /* forceRefresh */
     true).then(idToken => {
       return axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/login', {
-        token: idToken
+        token: idToken,
+        authUser: user
       });
     });
   }
@@ -218,11 +219,64 @@ const Layout = props => {
 
 /***/ }),
 
+/***/ "./containers/landingPage/api-landingPage.js":
+/*!***************************************************!*\
+  !*** ./containers/landingPage/api-landingPage.js ***!
+  \***************************************************/
+/*! exports provided: edit */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "edit", function() { return edit; });
+/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/promise */ "./node_modules/@babel/runtime-corejs2/core-js/promise.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _lib_db__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../lib/db */ "./lib/db.js");
+
+
+const edit = (section, value) => {
+  return new _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_0___default.a((resolve, reject) => {
+    try {
+      _lib_db__WEBPACK_IMPORTED_MODULE_1__["database"].ref(section().ref).set({
+        [section().value]: value
+      });
+      resolve({
+        message: 'successfully changed'
+      });
+    } catch (error) {
+      reject({
+        error: error.message
+      });
+    }
+  });
+};
+
+/***/ }),
+
+/***/ "./containers/landingPage/section1/sec1-api.js":
+/*!*****************************************************!*\
+  !*** ./containers/landingPage/section1/sec1-api.js ***!
+  \*****************************************************/
+/*! exports provided: changeTitle */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeTitle", function() { return changeTitle; });
+const changeTitle = () => {
+  return {
+    ref: 'landingPage/section1',
+    value: 'title'
+  };
+};
+
+/***/ }),
+
 /***/ "./lib/db.js":
 /*!*******************!*\
   !*** ./lib/db.js ***!
   \*******************/
-/*! exports provided: firebase, firestore, auth, functions, database, storage, ProvideAuth, useAuth */
+/*! exports provided: firebase, firestore, auth, functions, database, storage */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -233,66 +287,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "functions", function() { return functions; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "database", function() { return database; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "storage", function() { return storage; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProvideAuth", function() { return ProvideAuth; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "useAuth", function() { return useAuth; });
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/promise */ "./node_modules/@babel/runtime-corejs2/core-js/promise.js");
-/* harmony import */ var _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! firebase/app */ "firebase/app");
-/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! next/router */ "next/router");
-/* harmony import */ var next_router__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(next_router__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! js-cookie */ "js-cookie");
-/* harmony import */ var js_cookie__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(js_cookie__WEBPACK_IMPORTED_MODULE_11__);
-/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! firebase/firestore */ "firebase/firestore");
-/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(firebase_firestore__WEBPACK_IMPORTED_MODULE_12__);
-/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! firebase/auth */ "firebase/auth");
-/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(firebase_auth__WEBPACK_IMPORTED_MODULE_13__);
-/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! firebase/database */ "firebase/database");
-/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_14___default = /*#__PURE__*/__webpack_require__.n(firebase_database__WEBPACK_IMPORTED_MODULE_14__);
-/* harmony import */ var firebase_functions__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! firebase/functions */ "firebase/functions");
-/* harmony import */ var firebase_functions__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(firebase_functions__WEBPACK_IMPORTED_MODULE_15__);
-/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! firebase/storage */ "firebase/storage");
-/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(firebase_storage__WEBPACK_IMPORTED_MODULE_16__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! axios */ "axios");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_17__);
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! firebase/app */ "firebase/app");
+/* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! firebase/firestore */ "firebase/firestore");
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(firebase_firestore__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! firebase/auth */ "firebase/auth");
+/* harmony import */ var firebase_auth__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(firebase_auth__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! firebase/database */ "firebase/database");
+/* harmony import */ var firebase_database__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(firebase_database__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var firebase_functions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase/functions */ "firebase/functions");
+/* harmony import */ var firebase_functions__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(firebase_functions__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/storage */ "firebase/storage");
+/* harmony import */ var firebase_storage__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(firebase_storage__WEBPACK_IMPORTED_MODULE_5__);
 
 
 
 
-
-
-
-
-var __jsx = react__WEBPACK_IMPORTED_MODULE_8___default.a.createElement;
-
-function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
-
-
-
-
-
-
-
-
-
- // import 'isomorphic-unfetch'
 
 
 const firebaseConfig = {
@@ -305,165 +315,12 @@ const firebaseConfig = {
   appId: "1:1069152850600:web:e21d3819e0d87b9c48289d",
   measurementId: "G-1T2YHP7HWX"
 };
-const firebase = firebase_app__WEBPACK_IMPORTED_MODULE_9__["apps"].length ? firebase_app__WEBPACK_IMPORTED_MODULE_9__["app"]() : firebase_app__WEBPACK_IMPORTED_MODULE_9__["initializeApp"](firebaseConfig);
-const firestore = firebase_app__WEBPACK_IMPORTED_MODULE_9__["firestore"]();
-const auth = firebase_app__WEBPACK_IMPORTED_MODULE_9__["auth"]();
-const functions = firebase_app__WEBPACK_IMPORTED_MODULE_9__["functions"]();
+const firebase = firebase_app__WEBPACK_IMPORTED_MODULE_0__["apps"].length ? firebase_app__WEBPACK_IMPORTED_MODULE_0__["app"]() : firebase_app__WEBPACK_IMPORTED_MODULE_0__["initializeApp"](firebaseConfig);
+const firestore = firebase_app__WEBPACK_IMPORTED_MODULE_0__["firestore"]();
+const auth = firebase_app__WEBPACK_IMPORTED_MODULE_0__["auth"]();
+const functions = firebase_app__WEBPACK_IMPORTED_MODULE_0__["functions"]();
 const database = firebase.database();
 const storage = firebase.storage();
-const authContext = Object(react__WEBPACK_IMPORTED_MODULE_8__["createContext"])();
-function ProvideAuth({
-  children
-}) {
-  const auth = useProvideAuth();
-  return __jsx(authContext.Provider, {
-    value: auth
-  }, children);
-}
-const useAuth = () => {
-  return Object(react__WEBPACK_IMPORTED_MODULE_8__["useContext"])(authContext);
-};
-
-function useProvideAuth() {
-  const {
-    0: user,
-    1: setUser
-  } = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])(null);
-  const {
-    0: uploadInfo,
-    1: setUploadInfo
-  } = Object(react__WEBPACK_IMPORTED_MODULE_8__["useState"])({
-    progress: 0,
-    url: ""
-  }); // useEffect(() => {
-  //   return () => {
-  //     cleanup
-  //   };
-  // }, [input]);
-
-  const signin = async (email, password) => {
-    const loginAsAdmin = functions.httpsCallable('loginAsAdmin');
-    const snapshot = await loginAsAdmin({
-      email: email
-    });
-    return new _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_7___default.a(async (resolve, reject) => {
-      if (snapshot.data) {
-        try {
-          const response = await firebase.auth().signInWithEmailAndPassword(email, password);
-          setUser(response.user); // const userApi = await axios.post('/api/login', {
-          //   token: response.user.refreshToken
-          //   // method: 'POST',
-          //   // headers: new Headers({ 'Content-Type': 'application/json' }),
-          //   // credentials: 'same-origin',
-          //   // body: JSON.stringify({ token: response.user.refreshToken }),
-          // })
-          // console.log(userApi)
-
-          js_cookie__WEBPACK_IMPORTED_MODULE_11___default.a.set('token', response.user.refreshToken);
-          resolve('successful login');
-        } catch (error) {
-          reject('failed login');
-        }
-      } else {
-        reject('failed login');
-      }
-    }); // loginAsAdmin({ email: email }).then(snapshot => {
-    //   if (snapshot.data.admin) {
-    //     return firebase
-    //       .auth()
-    //       .signInWithEmailAndPassword(email, password)
-    //       .then(response => {
-    //         setUser(response.user);
-    //         Router.push('/dashboard/profile')
-    //         cookie.set('token', response.user.refreshToken)
-    //       })
-    //       // .then(() => Router.push('/dashboard/profile'))
-    //       // .then(() => console.log('rrrrrrrr'))
-    //       // Router.push('/dashboard/profile')
-    //       .catch((error) => error.message)
-    //   } else {
-    //     return 'Somthing went wrong'
-    //   }
-    // })
-  };
-
-  const signout = () => {
-    return firebase.auth().signOut().then(() => js_cookie__WEBPACK_IMPORTED_MODULE_11___default.a.remove('token')).then(() => axios__WEBPACK_IMPORTED_MODULE_17___default.a.post('/api/logout')).then(() => next_router__WEBPACK_IMPORTED_MODULE_10___default.a.push('/')).then(() => {
-      setUser(false);
-    });
-  };
-
-  const uploadImage = (userId, image) => {
-    if (!image || !userId) return;
-    const uploadTask = storage.ref(`images/profile/${userId}/${image.name}`).put(image);
-    return uploadTask.on('state_changed', snapshot => {
-      const progress = Math.round(snapshot.bytesTransferred / snapshot.totalBytes * 100);
-      setUploadInfo(_objectSpread({}, uploadInfo, {
-        progress
-      }));
-      console.log('Upload is ' + progress + '% done'); // switch (snapshot.state) {
-      //   case firebase.storage.TaskState.PAUSED: // or 'paused'
-      //     console.log('Upload is paused');
-      //     break;
-      //   case firebase.storage.TaskState.RUNNING: // or 'running'
-      //     console.log('Upload is running');
-      //     break;
-      // }
-      // resolve(progress)
-    }, error => {
-      // reject(error)
-      console.log(error);
-    } // () => {
-    //   setTimeout(async () => {
-    //     const thumbnail = await getPicProfileUrl(userId)
-    //     // console.log(thumbnail)
-    //     return thumbnail
-    //   }, 5000)
-    //   const url = await uploadTask.snapshot.ref.getDownloadURL()
-    //   console.log(url)
-    // }
-    );
-  };
-
-  const updateProfile = uid => async (displayName, photoURL) => {
-    const updateUserProfile = functions.httpsCallable('updateUserProfile');
-    const snapshot = await updateUserProfile({
-      uid: uid,
-      displayName: displayName,
-      photoURL: photoURL
-    });
-    console.log(snapshot);
-    return snapshot;
-  };
-
-  Object(react__WEBPACK_IMPORTED_MODULE_8__["useEffect"])(() => {
-    const unsubscribe = firebase.auth().onAuthStateChanged(user => {
-      if (user) {
-        firebase.auth().currentUser.getIdToken(
-        /* forceRefresh */
-        true).then(idToken => {
-          axios__WEBPACK_IMPORTED_MODULE_17___default.a.post('/api/login', {
-            token: idToken
-          });
-        });
-        setUser(user);
-      } else {
-        setUser(false);
-      }
-    }); // Cleanup subscription on unmount
-
-    return () => unsubscribe();
-  }, []);
-  return {
-    firestore,
-    user,
-    signin,
-    // signup,
-    signout,
-    uploadImage,
-    updateProfile
-  };
-}
 
 /***/ }),
 
@@ -1082,6 +939,27 @@ const LOGOUT_REQUEST_ENDED = 'LOGOUT_REQUEST_ENDED';
 
 /***/ }),
 
+/***/ "./store/actionTypes/landingPage.js":
+/*!******************************************!*\
+  !*** ./store/actionTypes/landingPage.js ***!
+  \******************************************/
+/*! exports provided: FETCH_REQUEST, FETCH_REQUEST_SUCCED, FETCH_REQUEST_FAILED, FETCH_REQUEST_ENDED */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_REQUEST", function() { return FETCH_REQUEST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_REQUEST_SUCCED", function() { return FETCH_REQUEST_SUCCED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_REQUEST_FAILED", function() { return FETCH_REQUEST_FAILED; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FETCH_REQUEST_ENDED", function() { return FETCH_REQUEST_ENDED; });
+// Fetch from database
+const FETCH_REQUEST = 'FETCH_REQUEST';
+const FETCH_REQUEST_SUCCED = 'FETCH_REQUEST_SUCCED';
+const FETCH_REQUEST_FAILED = 'FETCH_REQUEST_FAILED';
+const FETCH_REQUEST_ENDED = 'FETCH_REQUEST_ENDED';
+
+/***/ }),
+
 /***/ "./store/actionTypes/userSession.js":
 /*!******************************************!*\
   !*** ./store/actionTypes/userSession.js ***!
@@ -1201,11 +1079,46 @@ const logoutRequestEnded = () => ({
 
 /***/ }),
 
+/***/ "./store/actions/landingPage.js":
+/*!**************************************!*\
+  !*** ./store/actions/landingPage.js ***!
+  \**************************************/
+/*! exports provided: startFetchRequest, successedFetchRequest, failedFetchRequest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startFetchRequest", function() { return startFetchRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "successedFetchRequest", function() { return successedFetchRequest; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "failedFetchRequest", function() { return failedFetchRequest; });
+/* harmony import */ var _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes/landingPage */ "./store/actionTypes/landingPage.js");
+
+const startFetchRequest = title => ({
+  type: _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_0__["FETCH_REQUEST"],
+  payload: {
+    title: title
+  }
+});
+const successedFetchRequest = response => ({
+  type: _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_0__["FETCH_REQUEST_SUCCED"],
+  payload: {
+    message: response.message
+  }
+});
+const failedFetchRequest = response => ({
+  type: _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_0__["FETCH_REQUEST_FAILED"],
+  payload: {
+    message: response.error
+  }
+});
+
+/***/ }),
+
 /***/ "./store/actions/userSession.js":
 /*!**************************************!*\
   !*** ./store/actions/userSession.js ***!
   \**************************************/
-/*! exports provided: startFetchCurrentUser, succedFetch, failedFetch, logoutFinished, startUpdateCurrentUser, succedUpdate, failedUpdate, updateFinished, startListenPictureChange, listeningPictureChange, stopListenPictureChange, uploadProfilePicture, successedUploadProfilePicture, failedUploadProfilePicture, uploadProfilePictureFinished */
+/*! exports provided: startFetchCurrentUser, succedFetch, failedFetch, fetchUserFinished, startUpdateCurrentUser, succedUpdate, failedUpdate, updateFinished, startListenPictureChange, listeningPictureChange, stopListenPictureChange, uploadProfilePicture, successedUploadProfilePicture, failedUploadProfilePicture, uploadProfilePictureFinished */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1213,7 +1126,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startFetchCurrentUser", function() { return startFetchCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "succedFetch", function() { return succedFetch; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "failedFetch", function() { return failedFetch; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logoutFinished", function() { return logoutFinished; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserFinished", function() { return fetchUserFinished; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "startUpdateCurrentUser", function() { return startUpdateCurrentUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "succedUpdate", function() { return succedUpdate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "failedUpdate", function() { return failedUpdate; });
@@ -1231,19 +1144,20 @@ __webpack_require__.r(__webpack_exports__);
 const startFetchCurrentUser = () => ({
   type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["FETCH_USERSESSION"]
 });
-const succedFetch = payload => ({
+const succedFetch = response => ({
   type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["FETCH_USERSESSION_SUCCED"],
   payload: {
-    email: payload.data.email
+    authUser: response.authUser,
+    message: response.message
   }
 });
-const failedFetch = payload => ({
+const failedFetch = response => ({
   type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["FETCH_USERSESSION_FAILED"],
   payload: {
-    error: 'DOESN\'T AUTHORIZED'
+    error: response.error
   }
 });
-const logoutFinished = () => ({
+const fetchUserFinished = () => ({
   type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["FETCH_USERSESSION_ENDED"]
 }); // *************** Update **********************
 
@@ -1271,12 +1185,13 @@ const updateFinished = () => ({
   type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["UPDATE_USERSESSION_ENDED"]
 }); // listen to picture change
 
-const startListenPictureChange = uid => (fields, setFields) => ({
+const startListenPictureChange = uid => (fields, setFields, setPictureURL) => ({
   type: _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_0__["START_LISTEN_PICTURE_CHANGE"],
   payload: {
     uid: uid,
     fields: fields,
-    setFields: setFields
+    setFields: setFields,
+    setPictureURL: setPictureURL
   }
 });
 const listeningPictureChange = () => ({
@@ -1372,10 +1287,44 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux_observable__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_observable__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth */ "./store/epics/auth.js");
 /* harmony import */ var _userSession__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userSession */ "./store/epics/userSession.js");
+/* harmony import */ var _landingPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./landingPage */ "./store/epics/landingPage.js");
 
 
 
-const rootEpic = Object(redux_observable__WEBPACK_IMPORTED_MODULE_0__["combineEpics"])(_auth__WEBPACK_IMPORTED_MODULE_1__["loginEpic"], _auth__WEBPACK_IMPORTED_MODULE_1__["logoutEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["uploadPictureProfileEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["listenPictureChangeEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["updateUserSessionEpic"]);
+
+const rootEpic = Object(redux_observable__WEBPACK_IMPORTED_MODULE_0__["combineEpics"])(_auth__WEBPACK_IMPORTED_MODULE_1__["loginEpic"], _auth__WEBPACK_IMPORTED_MODULE_1__["logoutEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["uploadPictureProfileEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["listenPictureChangeEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["updateUserSessionEpic"], _userSession__WEBPACK_IMPORTED_MODULE_2__["fetchUserSessionEpic"], _landingPage__WEBPACK_IMPORTED_MODULE_3__["editLandingPageEpic"]);
+
+/***/ }),
+
+/***/ "./store/epics/landingPage.js":
+/*!************************************!*\
+  !*** ./store/epics/landingPage.js ***!
+  \************************************/
+/*! exports provided: editLandingPageEpic */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editLandingPageEpic", function() { return editLandingPageEpic; });
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rxjs/operators */ "rxjs/operators");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var redux_observable__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-observable */ "redux-observable");
+/* harmony import */ var redux_observable__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(redux_observable__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "rxjs");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(rxjs__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../actionTypes/landingPage */ "./store/actionTypes/landingPage.js");
+/* harmony import */ var _containers_landingPage_section1_sec1_api__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../containers/landingPage/section1/sec1-api */ "./containers/landingPage/section1/sec1-api.js");
+/* harmony import */ var _actions_landingPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../actions/landingPage */ "./store/actions/landingPage.js");
+/* harmony import */ var _containers_landingPage_api_landingPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../containers/landingPage/api-landingPage */ "./containers/landingPage/api-landingPage.js");
+
+
+
+
+
+
+ // ************** fetch userSession **************************
+
+const editLandingPageEpic = action$ => action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_3__["FETCH_REQUEST"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["mergeMap"])(action => Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_containers_landingPage_api_landingPage__WEBPACK_IMPORTED_MODULE_6__["edit"])(_containers_landingPage_section1_sec1_api__WEBPACK_IMPORTED_MODULE_4__["changeTitle"], action.payload.title)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(response => Object(_actions_landingPage__WEBPACK_IMPORTED_MODULE_5__["successedFetchRequest"])(response)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(response => Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(Object(_actions_landingPage__WEBPACK_IMPORTED_MODULE_5__["failedFetchRequest"])(response))))));
 
 /***/ }),
 
@@ -1383,11 +1332,12 @@ const rootEpic = Object(redux_observable__WEBPACK_IMPORTED_MODULE_0__["combineEp
 /*!************************************!*\
   !*** ./store/epics/userSession.js ***!
   \************************************/
-/*! exports provided: uploadPictureProfileEpic, listenPictureChangeEpic, updateUserSessionEpic */
+/*! exports provided: fetchUserSessionEpic, uploadPictureProfileEpic, listenPictureChangeEpic, updateUserSessionEpic */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserSessionEpic", function() { return fetchUserSessionEpic; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadPictureProfileEpic", function() { return uploadPictureProfileEpic; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listenPictureChangeEpic", function() { return listenPictureChangeEpic; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateUserSessionEpic", function() { return updateUserSessionEpic; });
@@ -1405,11 +1355,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // ************** Upload picture profile *********************
+ // ************** fetch userSession **************************
+
+const fetchUserSessionEpic = action$ => action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_actionTypes_userSession__WEBPACK_IMPORTED_MODULE_3__["FETCH_USERSESSION"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["mergeMap"])(() => Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_userSession_apis_userSession__WEBPACK_IMPORTED_MODULE_4__["fetchUserSession"])()).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(response => Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["succedFetch"])(response)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(response => Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["failedFetch"])(response))))); // ************** Upload picture profile *********************
 
 const uploadPictureProfileEpic = action$ => action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_actionTypes_userSession__WEBPACK_IMPORTED_MODULE_3__["UPLOAD_PROFILE_PICTURE"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["mergeMap"])(action => Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_userSession_apis_userSession__WEBPACK_IMPORTED_MODULE_4__["uploadPicture"])(action.payload.uid, action.payload.picture)(action.payload.fields, action.payload.setFields)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(response => Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["successedUploadProfilePicture"])(response)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(error => Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["failedUploadProfilePicture"])(error)))))); // ************** listen to picture profile change *********************
 
-const listenPictureChangeEpic = action$ => action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_actionTypes_userSession__WEBPACK_IMPORTED_MODULE_3__["START_LISTEN_PICTURE_CHANGE"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["mergeMap"])(action => Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(Object(_userSession_apis_userSession__WEBPACK_IMPORTED_MODULE_4__["listenPictureChange"])(action.payload.uid)(action.payload.fields, action.payload.setFields)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(() => Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["stopListenPictureChange"])())))); // ************** Update profile userSession *********************
+const listenPictureChangeEpic = action$ => action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_actionTypes_userSession__WEBPACK_IMPORTED_MODULE_3__["START_LISTEN_PICTURE_CHANGE"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["mergeMap"])(action => Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(Object(_userSession_apis_userSession__WEBPACK_IMPORTED_MODULE_4__["listenPictureChange"])(action.payload.uid)(action.payload.fields, action.payload.setFields, action.payload.setPictureURL)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(() => Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["stopListenPictureChange"])())))); // ************** Update profile userSession *********************
 
 const updateUserSessionEpic = action$ => action$.pipe(Object(redux_observable__WEBPACK_IMPORTED_MODULE_1__["ofType"])(_actionTypes_userSession__WEBPACK_IMPORTED_MODULE_3__["UPDATE_USERSESSION"]), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["mergeMap"])(action => Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["from"])(Object(_userSession_apis_userSession__WEBPACK_IMPORTED_MODULE_4__["updateProfile"])(action.payload.uid)(action.payload.displayName, action.payload.photoURL)).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["map"])(response => Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["succedUpdate"])(response)), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_0__["catchError"])(response => Object(_actions_userSession__WEBPACK_IMPORTED_MODULE_5__["failedUpdate"])(response)))));
 
@@ -1563,6 +1515,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _userSession__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./userSession */ "./store/reducers/userSession.js");
 /* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth */ "./store/reducers/auth.js");
 /* harmony import */ var _actionTypes_auth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../actionTypes/auth */ "./store/actionTypes/auth.js");
+/* harmony import */ var _landingPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./landingPage */ "./store/reducers/landingPage.js");
+/* harmony import */ var _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../actionTypes/landingPage */ "./store/actionTypes/landingPage.js");
+
+
 
 
 
@@ -1575,6 +1531,7 @@ const rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
   updateUserSessionReducer: _userSession__WEBPACK_IMPORTED_MODULE_2__["updateUserSessionReducer"],
   uploadPictureProfileReducer: _userSession__WEBPACK_IMPORTED_MODULE_2__["uploadPictureProfileReducer"],
   listenPictureChangeReducer: _userSession__WEBPACK_IMPORTED_MODULE_2__["listenPictureChangeReducer"],
+  editLandingPageReducer: _landingPage__WEBPACK_IMPORTED_MODULE_5__["editLandingPageReducer"],
   form: redux_form__WEBPACK_IMPORTED_MODULE_1__["reducer"].plugin({
     login: (state, action) => {
       switch (action.type) {
@@ -1584,10 +1541,77 @@ const rootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"]
         default:
           return state;
       }
+    },
+    editLandingPage: (state, action) => {
+      switch (action.type) {
+        case _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_6__["FETCH_REQUEST"]:
+          return undefined;
+
+        default:
+          return state;
+      }
     }
   })
 });
 /* harmony default export */ __webpack_exports__["default"] = (rootReducer);
+
+/***/ }),
+
+/***/ "./store/reducers/landingPage.js":
+/*!***************************************!*\
+  !*** ./store/reducers/landingPage.js ***!
+  \***************************************/
+/*! exports provided: editLandingPageReducer */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editLandingPageReducer", function() { return editLandingPageReducer; });
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-property */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/define-properties */ "./node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptors */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptors.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-descriptor */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-descriptor.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/get-own-property-symbols */ "./node_modules/@babel/runtime-corejs2/core-js/object/get-own-property-symbols.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @babel/runtime-corejs2/core-js/object/keys */ "./node_modules/@babel/runtime-corejs2/core-js/object/keys.js");
+/* harmony import */ var _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @babel/runtime-corejs2/helpers/esm/defineProperty */ "./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js");
+/* harmony import */ var _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../actionTypes/landingPage */ "./store/actionTypes/landingPage.js");
+
+
+
+
+
+
+
+
+function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_core_js_object_keys__WEBPACK_IMPORTED_MODULE_5___default()(object); if (_babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default.a) { var symbols = _babel_runtime_corejs2_core_js_object_get_own_property_symbols__WEBPACK_IMPORTED_MODULE_4___default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
+
+ // ********************* edit *************************
+
+const editLandingPageReducer = (state = {}, action) => {
+  switch (action.type) {
+    case _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_7__["FETCH_REQUEST_SUCCED"]:
+      return _objectSpread({}, state, {
+        authUser: action.payload.authUser,
+        message: action.payload.message
+      });
+
+    case _actionTypes_landingPage__WEBPACK_IMPORTED_MODULE_7__["FETCH_REQUEST_FAILED"]:
+      return _objectSpread({}, state, {
+        message: action.payload.error
+      });
+
+    default:
+      return state;
+  }
+};
 
 /***/ }),
 
@@ -1636,16 +1660,14 @@ const userSessionReducer = (state = {}, action) => {
   switch (action.type) {
     case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["FETCH_USERSESSION_SUCCED"]:
       return _objectSpread({}, state, {
-        email: action.payload.email
+        authUser: action.payload.authUser,
+        message: action.payload.message
       });
 
     case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["FETCH_USERSESSION_FAILED"]:
       return _objectSpread({}, state, {
-        error: action.payload.error
+        message: action.payload.error
       });
-
-    case _actionTypes_userSession__WEBPACK_IMPORTED_MODULE_7__["FETCH_USERSESSION_ENDED"]:
-      return _objectSpread({}, state);
 
     default:
       return state;
@@ -1736,11 +1758,12 @@ module.exports = {
 /*!*****************************************!*\
   !*** ./userSession/apis-userSession.js ***!
   \*****************************************/
-/*! exports provided: updateProfile, uploadPicture, listenPictureChange */
+/*! exports provided: fetchUserSession, updateProfile, uploadPicture, listenPictureChange */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUserSession", function() { return fetchUserSession; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateProfile", function() { return updateProfile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "uploadPicture", function() { return uploadPicture; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "listenPictureChange", function() { return listenPictureChange; });
@@ -1773,7 +1796,32 @@ function ownKeys(object, enumerableOnly) { var keys = _babel_runtime_corejs2_cor
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_6__["default"])(target, key, source[key]); }); } else if (_babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default.a) { _babel_runtime_corejs2_core_js_object_define_properties__WEBPACK_IMPORTED_MODULE_1___default()(target, _babel_runtime_corejs2_core_js_object_get_own_property_descriptors__WEBPACK_IMPORTED_MODULE_2___default()(source)); } else { ownKeys(Object(source)).forEach(function (key) { _babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, key, _babel_runtime_corejs2_core_js_object_get_own_property_descriptor__WEBPACK_IMPORTED_MODULE_3___default()(source, key)); }); } } return target; }
 
- // *************** updateProfile **************************
+// import axios from "axios";
+
+ // *************** Fetch userSession **********************
+
+const fetchUserSession = () => {
+  return new _babel_runtime_corejs2_core_js_promise__WEBPACK_IMPORTED_MODULE_7___default.a((resolve, reject) => {
+    try {
+      const authUser = _lib_db__WEBPACK_IMPORTED_MODULE_8__["firebase"].auth().currentUser;
+
+      if (user) {
+        resolve({
+          authUser: authUser,
+          message: 'successful fetch'
+        });
+      } else {
+        reject({
+          error: 'there is not user'
+        });
+      }
+    } catch (error) {
+      reject({
+        error: 'fetch user failed'
+      });
+    }
+  });
+}; // *************** updateProfile **************************
 
 const updateProfile = uid => (displayName, photoURL) => {
   if (!uid || !displayName || !photoURL) return;
@@ -1784,7 +1832,10 @@ const updateProfile = uid => (displayName, photoURL) => {
         uid: uid,
         displayName: displayName,
         photoURL: photoURL
-      });
+      }); // await axios.post('/api/user', {
+      //   uid: uid
+      // })
+
       resolve({
         message: 'Profile has been successfully updated'
       });
@@ -1834,12 +1885,14 @@ const uploadPicture = (userId, picture) => (fields, setFields) => {
   });
 }; // ****************** listen picture change *************************
 
-const listenPictureChange = userId => (fields, setFields) => {
-  return _lib_db__WEBPACK_IMPORTED_MODULE_8__["firestore"].collection("photoProfileURLs").doc(userId).onSnapshot(doc => {
+const listenPictureChange = userId => (fields, setFields, setPictureURL) => {
+  const profilePictures = _lib_db__WEBPACK_IMPORTED_MODULE_8__["database"].ref('profilePictures');
+  const photoProfileURLs = profilePictures.child(`'photoProfileURLs'/${userId}`);
+  return photoProfileURLs.on('value', snapshot => {
     setFields(_objectSpread({}, fields, {
-      pictureURL: doc.data().thumbnail,
       listenPicChange: false
     }));
+    setPictureURL(snapshot.val().thumbnail);
   });
 };
 

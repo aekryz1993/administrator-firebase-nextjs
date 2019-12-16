@@ -5,7 +5,7 @@ export function notLoggedin(ctx) {
   const { token_id } = nextCookie(ctx)
 
   const user = ctx.req && ctx.req.session ? ctx.req.session.decodedToken : null
-
+  
   if (!user) {
     if (typeof window === 'undefined') {
       ctx.res.writeHead(302, { Location: '/' })
@@ -14,7 +14,7 @@ export function notLoggedin(ctx) {
       if(!token_id) Router.push('/')
     }
   }
-
+  
   return { user, token_id }
 }
 
@@ -26,6 +26,7 @@ export function Loggedin(ctx) {
   if (user) {
     if (typeof window === 'undefined') {
       // if(ctx.req && ctx.req.session) console.log(ctx.req.session.decodedToken.user)
+      // ctx.res.setHeader("Set-Cookie", "HttpOnly;Secure;SameSite=Strict");
       ctx.res.writeHead(302, { Location: '/dashboard/profile' })
       ctx.res.end()
     } else {

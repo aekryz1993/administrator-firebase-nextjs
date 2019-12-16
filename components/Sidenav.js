@@ -32,7 +32,6 @@ const SideNav = () => {
         <PostLink path='messages' name="Messages" />
         <PostLink path='users' name="Users" />
       </ul>
-      <LogoutContainer/>
     </div>
   )
 }

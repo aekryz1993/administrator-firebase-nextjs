@@ -32,7 +32,8 @@ export const assignCheckSession = () => firebase.auth().onAuthStateChanged(user 
   if (user) {
     return firebase.auth().currentUser.getIdToken(/* forceRefresh */ true).then(idToken => {
       return axios.post('/api/login', {
-        token: idToken
+        token: idToken,
+        authUser: user
       })
     })
   }

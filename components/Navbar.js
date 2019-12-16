@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import navbarStyle from "../stylesheet/components/navbar.css";
 import EditProfileContainer from "../userSession/EditProfileContainer";
+import LogoutContainer from "../auth/LogoutContainer";
 
 const NavBar = ({ user }) => {
 
   const [show, setShow] = useState(false);
   const [close, setClose] = useState(false);
-  const [name, setName] = useState(user.name || user.displayName);
-  const [photoURL, setPhotoURL] = useState(user.picture || user.photoURL);
+  const [name, setName] = useState( user.displayName || user.name);
+  const [photoURL, setPhotoURL] = useState(user.photoURL || user.picture);
 
   const node = useRef();
   const node2 = useRef();
@@ -98,7 +99,8 @@ const NavBar = ({ user }) => {
               <div className={`${navbarStyle.dropdownContent} ${displayDropdownContent()}`} ref={node}>
                 <div className={navbarStyle.dropdownContentItems} onClick={handleClickEditProfile}>Update Profile</div>
                 <div className={navbarStyle.dropdownContentItems}>About</div>
-                <div className={navbarStyle.dropdownContentItems}>Contact</div>
+                <div className={navbarStyle.dropdownContentLine} />
+                <div className={navbarStyle.dropdownContentItems}><LogoutContainer/></div>
               </div>
             </div>
           </li>

@@ -13,16 +13,23 @@ const EditProfile = ({
 }) => {
 
   const [fields, setFields] = useState({
-    picture: null,
     displayName: userServer.name || userServer.displayName,
     pictureURL: userServer.picture || userServer.photoURL,
     progress: 0,
     listenPicChange: false,
   })
 
+  const [displayName, setDisplayName] = useState(userServer.name || userServer.displayName)
+  const [pictureURL, setPictureURL] = useState(userServer.picture || userServer.photoURL)
+
   useEffect(() => {
-    if(!fields.listenPicChange) return
-    startListenPictureChange(userServer.user_id || userServer.uid, fields, setFields)
+    if (!fields.listenPicChange) return
+    startListenPictureChange(
+      userServer.user_id || userServer.uid,
+      fields,
+      setFields,
+      setPictureURL,
+    )
   }, [fields.listenPicChange]);
 
   const handleClickCloseEditProfilebtn = () => {
@@ -30,21 +37,20 @@ const EditProfile = ({
   }
 
   const handleSaveClick = () => {
-    startUpdateCurrentUser(userServer.user_id || userServer.uid, fields.displayName, fields.pictureURL)
-    setPhotoURL(fields.pictureURL)
-    setName(fields.displayName)
+    startUpdateCurrentUser(userServer.user_id || userServer.uid, displayName, pictureURL)
+    setPhotoURL(pictureURL)
+    setName(displayName)
   }
 
   const handleFileChange = (event) => {
     if (event.target.files[0]) {
       const picture = event.target.files[0]
-      setFields({ ...fields, picture: picture })
       return uploadProfilePicture(userServer.user_id || userServer.uid, picture, fields, setFields)
     }
   }
 
   const handleNameChange = (event) => {
-    setFields({ ...fields, displayName: event.target.value })
+    setDisplayName(event.target.value)
   }
 
   return (
@@ -68,7 +74,7 @@ const EditProfile = ({
         <div>
           <img
             className={`${editProfileStyle.picProfile}`}
-            src={fields.pictureURL || 'auth.user.photoURL'}
+            src={pictureURL || 'auth.user.photoURL'}
           />
           <input
             className={`${editProfileStyle.changePic}`}
@@ -86,7 +92,7 @@ const EditProfile = ({
             id="name"
             name="name"
             placeholder="Add your name"
-            value={fields.displayName}
+            value={displayName}
             onChange={handleNameChange}
           />
         </div>

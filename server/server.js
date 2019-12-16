@@ -1,7 +1,8 @@
 import next from "next"; 
 import express from "express"; 
 import bodyParser from "body-parser"; 
-import admin from "firebase-admin"; 
+import admin from "firebase-admin";
+import cors from "cors"; 
 import apiRouter from "./routes";
 
 const port = parseInt(process.env.PORT, 10) || 3000
@@ -21,6 +22,7 @@ app.prepare().then(() => {
   const server = express()
 
   server.use(bodyParser.json())
+  server.use(cors())
 
   server.use('/api', apiRouter(firebase, server));
 

@@ -1,10 +1,8 @@
 export const getUser = (firebase) => (req, res) => {
-  const { body } = req
-
-  firebase.auth().getUser(body.uid)
+  const uid = req.body.uid
+  firebase.auth().getUser(uid)
     .then(userRecord => {
-      console.log(userRecord.toJSON())
-      res.json({ user: userRecord.toJSON() })
+      req.session.decodedToken = userRecord.toJSON()
     })
     .catch(err => console.log(err))
 }

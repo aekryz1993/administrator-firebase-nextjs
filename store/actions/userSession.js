@@ -21,21 +21,22 @@ export const startFetchCurrentUser = () => ({
   type: FETCH_USERSESSION,
 });
 
-export const succedFetch = (payload) => ({
+export const succedFetch = (response) => ({
   type: FETCH_USERSESSION_SUCCED,
   payload: {
-    email: payload.data.email,
+    authUser: response.authUser,
+    message: response.message,
   }
 });
 
-export const failedFetch = (payload) => ({
+export const failedFetch = (response) => ({
   type: FETCH_USERSESSION_FAILED,
   payload: {
-    error: 'DOESN\'T AUTHORIZED',
+    error: response.error,
   }
 });
 
-export const logoutFinished = () => ({
+export const fetchUserFinished = () => ({
   type: FETCH_USERSESSION_ENDED
 });
 
@@ -68,12 +69,13 @@ export const updateFinished = () => ({
 });
 
 // listen to picture change
-export const startListenPictureChange = (uid) => (fields, setFields) => ({
+export const startListenPictureChange = (uid) => (fields, setFields, setPictureURL) => ({
   type: START_LISTEN_PICTURE_CHANGE,
   payload: {
     uid: uid,
     fields: fields,
-    setFields: setFields
+    setFields: setFields,
+    setPictureURL: setPictureURL,
   }
 });
 

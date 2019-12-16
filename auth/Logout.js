@@ -1,17 +1,10 @@
 import { useEffect } from "react";
 
-const Logout = ({ message, redirect, logoutRequest, logoutRequestEnded }) => {
-
-  useEffect(() => {
-    if (message) console.log(message)
-    return () => {
-      logoutRequestEnded();
-    };
-  }, []);
+const Logout = ({ message, redirect, logoutRequest, }) => {
 
   return (
     <>
-      <button onClick={logoutRequest}>Logout</button>
+      <div onClick={logoutRequest}>Logout</div>
     </>
   )
 }

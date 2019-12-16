@@ -17,17 +17,14 @@ export const userSessionReducer = (state = {}, action) => {
     case FETCH_USERSESSION_SUCCED:
       return {
         ...state,
-        email: action.payload.email
+        authUser: action.payload.authUser,
+        message: action.payload.message
       };
     case FETCH_USERSESSION_FAILED:
       return {
         ...state,
-        error: action.payload.error,
+        message: action.payload.error,
       };
-    case FETCH_USERSESSION_ENDED:
-      return {
-        ...state,
-      }
     default:
       return state;
   }

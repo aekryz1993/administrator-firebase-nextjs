@@ -6,6 +6,7 @@ import { firebase } from "../lib/db";
 const Dashboard = ({user, children}) => {
   
   user = user ? user : firebase.auth().currentUser
+
   return (
     <>
       <Sidenav />

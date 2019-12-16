@@ -2,7 +2,7 @@ import { updateUser, getUser, profilePicture, createUser } from "../controllers/
 
 const usersRouter = (router, firebase, server) => {
 
-  router.get('/user', getUser(firebase))
+  router.post('/user', getUser(firebase))
   router.put('/update', updateUser(firebase))
   router.post('/profilePicture', profilePicture(firebase))
   router.post('/create', createUser(firebase))

@@ -117,6 +117,12 @@
   background-color: rgb(54, 54, 54);
 }
 
+.dropdownContentLine {
+  background-color: rgb(141, 141, 141);
+  height: 1px;
+  width: 100%;
+}
+
 .editProfile {
   position: absolute;
   /* -------------------------------------------------------- */

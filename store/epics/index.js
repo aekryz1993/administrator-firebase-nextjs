@@ -3,8 +3,10 @@ import { loginEpic, logoutEpic } from "./auth";
 import { 
   uploadPictureProfileEpic, 
   listenPictureChangeEpic, 
-  updateUserSessionEpic 
+  updateUserSessionEpic, 
+  fetchUserSessionEpic
 } from './userSession';
+import { editLandingPageEpic } from './landingPage';
 
 export const rootEpic = combineEpics(
   loginEpic,
@@ -12,4 +14,6 @@ export const rootEpic = combineEpics(
   uploadPictureProfileEpic,
   listenPictureChangeEpic,
   updateUserSessionEpic,
+  fetchUserSessionEpic,
+  editLandingPageEpic,
 )
